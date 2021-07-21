@@ -25,8 +25,8 @@ jobs:
           cluster-name: ${{env.CLUSTER_NAME}}
       - name: Apply all resources
         run: |
-          kubectl apply -f k8s/cscms-url-shortener-depl.yaml
-          kubectl apply -f k8s/cscms-url-shortener-srv.yaml
+          kubectl apply -f k8s/cscms-url-shortener/cscms-url-shortener-depl.yaml
+          kubectl apply -f k8s/cscms-url-shortener/cscms-url-shortener-srv.yaml
       - name: Apply new version
         run: |
           kubectl rollout restart deployment aka-cscms-depl
