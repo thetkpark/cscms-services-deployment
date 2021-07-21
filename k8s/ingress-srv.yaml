@@ -26,9 +26,16 @@ spec:
       http:
         paths:
         - pathType: Prefix
-          path: /?(.*)
+          path: /api?(.*)
           backend:
             service:
               name: timetable-api-srv
               port: 
                 number: 4000
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: timetable-client-srv
+              port: 
+                number: 80

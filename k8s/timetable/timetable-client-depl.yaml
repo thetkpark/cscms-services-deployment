@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timetable-client-depl
+spec:
+  selector:
+    matchLabels:
+      app: timetable-client
+  template:
+    metadata:
+      labels:
+        app: timetable-client
+    spec:
+      containers:
+      - name: timetable-client
+        image: thetkpark/cs-timetable-client
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
+
