@@ -17,7 +17,10 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "150m"
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
         ports:
         - containerPort: 3050
         env:
@@ -34,16 +37,3 @@ spec:
                 name: aka-cscms-secret
                 key: COSMOSDB_KEY
         
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: aka-cscms-srv
-spec:
-  selector:
-    app: aka-cscms
-  ports:
-  - port: 3050
-    targetPort: 3050
-    name: web
-    protocol: TCP

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aka-cscms-srv
+spec:
+  selector:
+    app: aka-cscms
+  ports:
+  - port: 3050
+    targetPort: 3050
+    name: web
+    protocol: TCP
