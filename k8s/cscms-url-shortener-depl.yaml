@@ -20,6 +20,19 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3050
+        env:
+          - name: ENTRYPOINT
+            value: https://aka.cscms.me
+          - name: COSMOSDB_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: aka-cscms-secret
+                key: COSMOSDB_ENDPOINT
+          - name: COSMOSDB_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aka-cscms-secret
+                key: COSMOSDB_KEY
         
 ---
 apiVersion: v1
