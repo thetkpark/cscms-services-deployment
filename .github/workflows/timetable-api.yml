@@ -22,5 +22,9 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
           cluster-name: ${{env.CLUSTER_NAME}}
+      - name: Apply all resources
+        run: |
+          - kubectl apply -f k8s/timetable-api-depl.yaml
+          - kubectl apply -f k8s/timetable-api-srv.yaml
       - name: Apply new version
-        run: kubectl rollout restart -f k8s/timetable-api-depl.yaml
+        run: kubectl rollout restart deployment timetable-api-depl
