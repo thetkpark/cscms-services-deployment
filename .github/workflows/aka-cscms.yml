@@ -1,0 +1,33 @@
+
+name: Deploy CSCMS URL Shortener
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  repository_dispatch:
+    types: ['aka_cscms']
+    
+env:
+  CLUSTER_NAME: cscms-services
+  CLUSTER_RESOURCE_GROUP: cscms.me
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1.1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
+          cluster-name: ${{env.CLUSTER_NAME}}
+      - name: Apply all resources
+        run: |
+          kubectl apply -f k8s/cscms-url-shortener-depl.yaml
+          kubectl apply -f k8s/cscms-url-shortener-srv.yaml
+      - name: Apply new version
+        run: |
+          kubectl rollout restart deployment aka-cscms-depl
+          kubectl rollout status deployment aka-cscms-depl
