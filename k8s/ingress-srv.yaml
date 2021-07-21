@@ -8,11 +8,11 @@ metadata:
 spec:
   tls:
     - hosts: 
-      - aka.cscms.me
-      - timetable.cscms.me
+      - aka-test.cscms.me
+      - timetable-test.cscms.me
       secretName: cscms-tls
   rules:
-    - host: aka.cscms.me
+    - host: aka-test.cscms.me
       http:
         paths:
         - pathType: Prefix
@@ -22,11 +22,11 @@ spec:
               name: aka-cscms-srv
               port: 
                 number: 3050
-    - host: timetable.cscms.me
+    - host: timetable-test.cscms.me
       http:
         paths:
         - pathType: Prefix
-          path: /api?(.*)
+          path: /?(.*)
           backend:
             service:
               name: timetable-api-srv
