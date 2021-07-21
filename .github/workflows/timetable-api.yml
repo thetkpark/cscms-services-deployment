@@ -1,0 +1,23 @@
+name: Deploy Timetable API
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  repository_dispatch:
+    types: ['timetable_api']
+  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Docker Hub Tag
+        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
+        with:
+          org: thetkpark
+          repo: cs-timetable-api
+      - name: Check outputs
+        run: |
+          echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
