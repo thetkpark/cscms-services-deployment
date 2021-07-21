@@ -6,18 +6,21 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: ['timetable_api']
-  
+    
+env:
+  CLUSTER_NAME: cscms-services
+  CLUSTER_RESOURCE_GROUP: cscms.me
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get Docker Hub Tag
-        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1.1
         with:
-          org: thetkpark
-          repo: cs-timetable-api
-      - name: Check outputs
-        run: |
-          echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
+          cluster-name: ${{env.CLUSTER_NAME}}
+      - name: Apply new version
+        run: kubectl rollout restart -f k8s/timetable-api-depl.yaml
