@@ -24,7 +24,7 @@ jobs:
           cluster-name: ${{env.CLUSTER_NAME}}
       - name: Apply all resources
         run: |
-          - kubectl apply -f k8s/timetable-api-depl.yaml
-          - kubectl apply -f k8s/timetable-api-srv.yaml
+          kubectl apply -f k8s/timetable-api-depl.yaml
+          kubectl apply -f k8s/timetable-api-srv.yaml
       - name: Apply new version
         run: kubectl rollout restart deployment timetable-api-depl
