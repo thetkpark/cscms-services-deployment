@@ -1,0 +1,24 @@
+name: Deploy Ingress Nginx
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    
+env:
+  CLUSTER_NAME: cscms-services
+  CLUSTER_RESOURCE_GROUP: cscms.me
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1.1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
+          cluster-name: ${{env.CLUSTER_NAME}}
+      - name: Apply ingress config changes
+        run: kubectl apply -f k8s/ingress-srv.yaml
