@@ -43,3 +43,8 @@ spec:
                 key: BUCKET_NAME
           - name: GCS_KEY_PATH
             value: /secret/gcs-sa-key.json
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: common-configmap
+                key: REDIS_HOST_PORT

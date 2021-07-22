@@ -4,3 +4,4 @@ metadata:
   name: common-configmap
 data:
   REDIS_HOST: redis-common-srv
+  REDIS_HOST_PORT: redis-common-srv:6379
