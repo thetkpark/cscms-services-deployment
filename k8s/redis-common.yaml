@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-common-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-common
+  template:
+    metadata:
+      labels:
+        app: redis-common
+    spec:
+      containers:
+      - name: redis-common
+        image: redis:6.2.4-alpine3.14
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-common-srv
+spec:
+  selector:
+    app: redis-common-depl
+  ports:
+  - port: 6379
+    targetPort: 6379
