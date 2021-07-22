@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   workflow_dispatch:
   repository_dispatch:
-    types: ['aka_cscms']
+    types: ['temp_storage']
     
 env:
   CLUSTER_NAME: cscms-services
