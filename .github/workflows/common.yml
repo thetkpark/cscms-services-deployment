@@ -1,4 +1,4 @@
-name: Deploy Ingress Nginx
+name: Deploy common services & deployments
 
 on:
   push:
@@ -21,4 +21,7 @@ jobs:
           resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
           cluster-name: ${{env.CLUSTER_NAME}}
       - name: Apply ingress config changes
-        run: kubectl apply -f k8s/ingress-srv.yaml
+        run: |
+          kubectl apply -f k8s/ingress-srv.yaml
+          kubectl apply -f k8s/common-configmap.yaml
+          kubectl apply -f k8s/redis-common.yaml
