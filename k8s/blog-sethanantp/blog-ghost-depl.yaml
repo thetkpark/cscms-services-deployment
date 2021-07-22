@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-ghost-depl
+spec:
+  selector:
+    matchLabels:
+      app: blog-ghost
+  template:
+    metadata:
+      labels:
+        app: blog-ghost
+    spec:
+      volumes:
+        - name: blog-cms-volume
+          persistentVolumeClaim:
+            claimName: blog-ghost-pvc
+            readOnly: false
+      containers:
+      - name: blog-ghost
+        image: ghost
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 2368 
+        volumeMounts:
+          - mountPath: /var/lib/ghost/content
+            name: blog-cms-volume
+            readOnly: false
+

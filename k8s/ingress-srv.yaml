@@ -11,6 +11,9 @@ spec:
       - aka-test.cscms.me
       - timetable-test.cscms.me
       secretName: cscms-tls
+    - hosts:
+      - blog-test.sethanantp.com
+      secretName: sethanantp-tls
   rules:
     - host: aka-test.cscms.me
       http:
@@ -39,3 +42,13 @@ spec:
               name: timetable-client-srv
               port: 
                 number: 80
+    - host: blog-test.sethanantp.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: blog-ghost-srv
+              port: 
+                number: 2368
