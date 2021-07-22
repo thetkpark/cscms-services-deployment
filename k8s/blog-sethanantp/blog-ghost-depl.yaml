@@ -15,14 +15,13 @@ spec:
         - name: blog-cms-volume
           persistentVolumeClaim:
             claimName: blog-ghost-pvc
-            readOnly: false
       containers:
       - name: blog-ghost
         image: ghost
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "300m"
         ports:
         - containerPort: 2368 
         volumeMounts:
