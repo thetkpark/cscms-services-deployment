@@ -33,8 +33,15 @@ resource "azurerm_kubernetes_cluster" "cscms-services" {
   }
 }
 
+resource "azurerm_managed_disk" "blog_ghost_data_disk" {
+  name = "blog-ghost-data-disk"
+  location = data.azurerm_resource_group.cscms_rg.location
+  resource_group_name = data.azurerm_resource_group.cscms_rg.name
+  storage_account_type = "Standard_LRS"
+  create_option = "Empty"
+  disk_size_gb = "2"
+}
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.cscms-services.kube_config_raw
-  sensitive = true
+output "blog_ghost_data_disk_uri" {
+  value = azurerm_managed_disk.blog_ghost_data_disk.source_uri
 }
