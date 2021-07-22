@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temp-storage-depl
+spec:
+  selector:
+    matchLabels:
+      app: temp-storage
+  template:
+    metadata:
+      labels:
+        app: temp-storage
+    spec:
+      volumes:
+        - name: temp-storage-secret
+          secret:
+            secretName: temp-storage-secret
+      containers:
+      - name: temp-storage
+        image: thetkpark/temp-storage
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+          - mountPath: /secret
+            name: temp-storage-secret
+            readOnly: true
+        env:
+          - name: CLIENT_PATH
+            value: /app/client
+          - name: ENTRYPOINT
+            value: https://tmp-test.cscms.me
+          - name: BUCKET_NAME
+            valueFrom:
+              secretKeyRef:
+                name: temp-storage-secret
+                key: BUCKET_NAME
+          - name: GCS_KEY_PATH
+            value: /secret/gcs-sa-key.json

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: temp-storage-srv
+spec:
+  selector:
+    app: temp-storage
+  ports:
+  - port: 5000
+    targetPort: 5000
