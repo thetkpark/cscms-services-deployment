@@ -23,8 +23,9 @@ spec:
             - containerPort: 8080
           volumeMounts:
             - name: oj-storage
-              mountPath: /test_case:ro
+              mountPath: /test_case
               subPath: backend/test_case
+              readOnly: true
             - name: oj-storage
               mountPath: /log
               subPath: judge_server/log
