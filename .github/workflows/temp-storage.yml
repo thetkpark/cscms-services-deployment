@@ -24,7 +24,8 @@ jobs:
           cluster-name: ${{env.CLUSTER_NAME}}
       - name: Apply all resources
         run: |
-          kubectl apply -f k8s/tempstorage
+          kubectl apply -f k8s/tempstorage/temp-storage-depl.yaml
+          kubectl apply -f k8s/tempstorage/temp-storage-srv.yaml
       - name: Apply new version
         run: |
           kubectl rollout restart -f k8s/tempstorage/temp-storage-depl.yaml
