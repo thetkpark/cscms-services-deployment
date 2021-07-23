@@ -11,20 +11,20 @@ spec:
       labels:
         app: oj-backend
     spec:
-      # volumes:
-      #   - name: oj-storage
-      #     persistentVolumeClaim:
-      #       claimName: oj-persistent-volume-claim
+      volumes:
+        - name: oj-storage
+          persistentVolumeClaim:
+            claimName: oj-pvc
       containers:
         - name: backend
           image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
           ports:
             - containerPort: 8000
             - containerPort: 1443
-          # volumeMounts:
-          #   - name: oj-storage
-          #     mountPath: /data
-          #     subPath: backend
+          volumeMounts:
+            - name: oj-storage
+              mountPath: /data
+              subPath: backend
           resources:
             limits:
               memory: "256Mi"
@@ -33,6 +33,11 @@ spec:
               memory: "128Mi"
               cpu: "100m"
           env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_HOST
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
@@ -48,11 +53,16 @@ spec:
                 configMapKeyRef:
                   name: oj-configmap
                   key: POSTGRES_PASSWORD
-            - name: JUDGE_SERVER_TOKEN
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: oj-configmap
-                  key: JUDGE_SERVER_TOKEN
+                  key: POSTGRES_PASSWORD
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: common-configmap
+                  key: REDIS_HOST
 ---
 apiVersion: v1
 kind: Service

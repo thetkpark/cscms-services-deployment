@@ -11,19 +11,19 @@ spec:
       labels:
         app: oj-postgres
     spec:
-      # volumes:
-      #   - name: oj-storage
-      #     persistentVolumeClaim:
-      #       claimName: oj-persistent-volume-claim
+      volumes:
+        - name: oj-storage
+          persistentVolumeClaim:
+            claimName: oj-pvc
       containers:
         - name: postgres
           image: postgres:10-alpine
           ports:
             - containerPort: 5432
-          # volumeMounts:
-          #   - name: oj-storage
-          #     mountPath: /var/lib/postgresql/data
-          #     subPath: postgres
+          volumeMounts:
+            - name: oj-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
           resources:
             limits:
               memory: "256Mi"
