@@ -12,25 +12,25 @@ spec:
       labels:
         app: judge-server
     spec:
-      # volumes:
-      #   - name: oj-storage
-      #     persistentVolumeClaim:
-      #       claimName: oj-persistent-volume-claim
+      volumes:
+        - name: oj-storage
+          persistentVolumeClaim:
+            claimName: oj-pvc
       containers:
         - name: judge
           image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/judge_server
           ports:
             - containerPort: 8080
-          # volumeMounts:
-          #   - name: oj-storage
-          #     mountPath: /test_case:ro
-          #     subPath: backend/test_case
-          #   - name: oj-storage
-          #     mountPath: /log
-          #     subPath: judge_server/log
-          #   - name: oj-storage
-          #     mountPath: /judger
-          #     subPath: judge_server/run
+          volumeMounts:
+            - name: oj-storage
+              mountPath: /test_case:ro
+              subPath: backend/test_case
+            - name: oj-storage
+              mountPath: /log
+              subPath: judge_server/log
+            - name: oj-storage
+              mountPath: /judger
+              subPath: judge_server/run
           resources:
             limits:
               memory: "512Mi"
@@ -44,7 +44,10 @@ spec:
             - name: BACKEND_URL
               value: http://oj-backend-srv:8000/api/judge_server_heartbeat/
             - name: TOKEN
-              value: CHANGE_THIS
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: JUDGE_SERVER_TOKEN
           livenessProbe:
             exec:
               command:
