@@ -13,6 +13,7 @@ spec:
       - timetable-test.cscms.me
       - tmp-test.cscms.me
       - test.cscms.me
+      - monitor.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog-test.sethanantp.com
@@ -65,6 +66,16 @@ spec:
               name: temp-storage-srv
               port: 
                 number: 5000
+    - host: monitor.cscms.me
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: grafana-srv
+              port: 
+                number: 80
     - host: blog-test.sethanantp.com
       http:
         paths:
