@@ -53,11 +53,11 @@ spec:
                 configMapKeyRef:
                   name: oj-configmap
                   key: POSTGRES_PASSWORD
-            - name: POSTGRES_PASSWORD
+            - name: JUDGE_SERVER_TOKEN
               valueFrom:
                 configMapKeyRef:
                   name: oj-configmap
-                  key: POSTGRES_PASSWORD
+                  key: JUDGE_SERVER_TOKEN
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:

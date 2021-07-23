@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: judge-server-depl
+  name: oj-judge-server-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: judge-server
+      app: oj-judge-server
   template:
     metadata:
       labels:
-        app: judge-server
+        app: oj-judge-server
     spec:
       volumes:
         - name: oj-storage
@@ -40,7 +40,7 @@ spec:
               cpu: "100m"
           env:
             - name: SERVICE_URL
-              value: http://judge-server-srv:8080
+              value: http://oj-judge-server-srv:8080
             - name: BACKEND_URL
               value: http://oj-backend-srv:8000/api/judge_server_heartbeat/
             - name: TOKEN
@@ -69,10 +69,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: judge-server-srv
+  name: oj-judge-server-srv
 spec:
   selector:
-    app: judge-server
+    app: oj-judge-server
   ports:
   - port: 8080
     targetPort: 8080
