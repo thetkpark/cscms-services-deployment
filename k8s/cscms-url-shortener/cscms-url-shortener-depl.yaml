@@ -25,7 +25,7 @@ spec:
         - containerPort: 3050
         env:
           - name: ENTRYPOINT
-            value: https://aka.cscms.me
+            value: https://aka-test.cscms.me
           - name: COSMOSDB_ENDPOINT
             valueFrom:
               secretKeyRef:
