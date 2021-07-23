@@ -41,13 +41,19 @@ spec:
               cpu: "100m"
           env:
             - name: SERVICE_URL
-              value: http://oj-judge-server-srv:8080
-            - name: BACKEND_URL
-              value: http://oj-backend-srv:8000/api/judge_server_heartbeat/
-            - name: TOKEN
               valueFrom:
                 configMapKeyRef:
                   name: oj-configmap
+                  key: SERVICE_URL
+            - name: BACKEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: BACKEND_URL
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: oj-secret
                   key: JUDGE_SERVER_TOKEN
           livenessProbe:
             exec:

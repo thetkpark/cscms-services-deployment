@@ -39,13 +39,13 @@ spec:
                   key: POSTGRES_DB
             - name: POSTGRES_USER
               valueFrom:
-                configMapKeyRef:
-                  name: oj-configmap
+                secretKeyRef:
+                  name: oj-secret
                   key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: oj-configmap
+                secretKeyRef:
+                  name: oj-secret
                   key: POSTGRES_PASSWORD
 ---
 apiVersion: v1

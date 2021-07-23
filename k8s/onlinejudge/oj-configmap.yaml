@@ -5,6 +5,5 @@ metadata:
 data:
   POSTGRES_HOST: oj-postgres-srv
   POSTGRES_DB: onlinejudge
-  POSTGRES_USER: onlinejudge
-  POSTGRES_PASSWORD: onlinejudge
-  JUDGE_SERVER_TOKEN: token
+  SERVICE_URL: http://oj-judge-server-srv:8080
+  BACKEND_URL: http://oj-backend-srv:8000/api/judge_server_heartbeat/
