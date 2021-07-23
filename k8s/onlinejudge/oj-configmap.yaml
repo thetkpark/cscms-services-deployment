@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oj-configmap
+data:
+  POSTGRES_DB: onlinejudge
+  POSTGRES_USER: onlinejudge
+  POSTGRES_PASSWORD: onlinejudge
+  JUDGE_SERVER_TOKEN: token

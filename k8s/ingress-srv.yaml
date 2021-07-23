@@ -12,11 +12,22 @@ spec:
       - aka-test.cscms.me
       - timetable-test.cscms.me
       - tmp-test.cscms.me
+      - test.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog-test.sethanantp.com
       secretName: sethanantp-tls
   rules:
+    - host: test.cscms.me
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: oj-backend-srv
+              port: 
+                number: 8000
     - host: aka-test.cscms.me
       http:
         paths:

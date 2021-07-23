@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oj-backend-depl
+spec:
+  selector:
+    matchLabels:
+      app: oj-backend
+  template:
+    metadata:
+      labels:
+        app: oj-backend
+    spec:
+      # volumes:
+      #   - name: oj-storage
+      #     persistentVolumeClaim:
+      #       claimName: oj-persistent-volume-claim
+      containers:
+        - name: backend
+          image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
+          ports:
+            - containerPort: 8000
+            - containerPort: 1443
+          # volumeMounts:
+          #   - name: oj-storage
+          #     mountPath: /data
+          #     subPath: backend
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "300m"
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_PASSWORD
+            - name: JUDGE_SERVER_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: JUDGE_SERVER_TOKEN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oj-backend-srv
+spec:
+  selector:
+    app: oj-backend
+  ports:
+  - port: 8000
+    targetPort: 8000
+    name: web
+  - port: 1443
+    targetPort: 1443
+    name: judge-server
+  
+

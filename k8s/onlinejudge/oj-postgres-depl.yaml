@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oj-postgres-depl
+spec:
+  selector:
+    matchLabels:
+      app: oj-postgres
+  template:
+    metadata:
+      labels:
+        app: oj-postgres
+    spec:
+      # volumes:
+      #   - name: oj-storage
+      #     persistentVolumeClaim:
+      #       claimName: oj-persistent-volume-claim
+      containers:
+        - name: postgres
+          image: postgres:10-alpine
+          ports:
+            - containerPort: 5432
+          # volumeMounts:
+          #   - name: oj-storage
+          #     mountPath: /var/lib/postgresql/data
+          #     subPath: postgres
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "100m"
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: oj-configmap
+                  key: POSTGRES_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oj-postgres-srv
+spec:
+  selector:
+    app: oj-postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
