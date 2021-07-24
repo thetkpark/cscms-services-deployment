@@ -16,8 +16,8 @@ spec:
         image: thetkpark/cscms-url-shortener
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "120m"
+            memory: "100Mi"
+            cpu: "150m"
           requests:
             memory: "64Mi"
             cpu: "25m"
