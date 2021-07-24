@@ -20,11 +20,11 @@ spec:
         image: thetkpark/temp-storage
         resources:
           limits:
-            memory: "128Mi"
+            memory: "300Mi"
             cpu: "50m"
           requests:
-            memory: "16Mi"
-            cpu: "10m"
+            memory: "128Mi"
+            cpu: "20m"
         ports:
         - containerPort: 5000
         volumeMounts:
