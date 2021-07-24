@@ -16,11 +16,11 @@ spec:
         image: thetkpark/cs-timetable-client
         resources:
           limits:
-            memory: "64Mi"
+            memory: "16Mi"
             cpu: "30m"
           requests:
-            memory: "16Mi"
-            cpu: "10m"
+            memory: "8Mi"
+            cpu: "5m"
         ports:
         - containerPort: 80
 
