@@ -13,8 +13,10 @@ spec:
     spec:
       volumes:
         - name: blog-cms-volume
-          persistentVolumeClaim:
-            claimName: blog-ghost-pvc
+          azureDisk:
+            kind: Managed
+            diskName: blog-sethanantp-disk
+            diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourceGroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/blog-sethanantp-disk
       containers:
       - name: blog-ghost
         image: ghost
@@ -27,6 +29,9 @@ spec:
             cpu: "10m"
         ports:
         - containerPort: 2368 
+        env:
+          - name: url
+            value: https://blog.sethanantp.com
         volumeMounts:
           - mountPath: /var/lib/ghost/content
             name: blog-cms-volume
