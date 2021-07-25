@@ -52,4 +52,20 @@ resource "helm_release" "ingress_nginx" {
   create_namespace = true
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart = "ingress-nginx"
+  depends_on = [
+    azurerm_kubernetes_cluster.cscms-services
+  ]
+  
+  set {
+    name = "controller.metrics.enabled"
+    value = "true"
+  }
+  set {
+    name = "controller.podAnnotations.prometheus\\.io/scrape"
+    value = "true"
+  }
+  set {
+    name = "controller.podAnnotations.prometheus\\.io/port"
+    value = "10254"
+  }
 }
