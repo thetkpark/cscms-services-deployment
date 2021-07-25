@@ -10,13 +10,13 @@ spec:
   tls:
     - hosts: 
       - aka-test.cscms.me
-      - timetable-test.cscms.me
-      - tmp-test.cscms.me
+      - timetable.cscms.me
+      - tmp.cscms.me
       - test.cscms.me
       - monitor.cscms.me
       secretName: cscms-tls
     - hosts:
-      - blog-test.sethanantp.com
+      - blog.sethanantp.com
       secretName: sethanantp-tls
   rules:
     - host: test.cscms.me
@@ -39,7 +39,7 @@ spec:
               name: aka-cscms-srv
               port: 
                 number: 3050
-    - host: timetable-test.cscms.me
+    - host: timetable.cscms.me
       http:
         paths:
         - pathType: Prefix
@@ -56,7 +56,7 @@ spec:
               name: timetable-client-srv
               port: 
                 number: 80
-    - host: tmp-test.cscms.me
+    - host: tmp.cscms.me
       http:
         paths:
         - pathType: Prefix
@@ -76,7 +76,7 @@ spec:
               name: grafana-srv
               port: 
                 number: 80
-    - host: blog-test.sethanantp.com
+    - host: blog.sethanantp.com
       http:
         paths:
         - pathType: Prefix
