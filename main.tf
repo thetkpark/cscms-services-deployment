@@ -101,6 +101,10 @@ resource "kubernetes_service" "grafana_service" {
     name = "grafana-srv"
   }
   spec {
+    type = "ExternalName"
     external_name = "prometheus-grafana.monitoring.svc.cluster.local"
+    port {
+      port = 80
+    }
   }
 }
