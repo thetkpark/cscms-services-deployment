@@ -95,3 +95,12 @@ resource "helm_release" "prometheus_stack" {
     value = "false"
   }
 }
+
+resource "kubernetes_service" "grafana_service" {
+  metadata {
+    name = "grafana_srv"
+  }
+  spec {
+    external_name = "prometheus-grafana.monitoring.svc.cluster.local"
+  }
+}
