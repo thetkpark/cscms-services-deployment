@@ -32,4 +32,3 @@ resource "azurerm_kubernetes_cluster" "cscms-services" {
     type = "SystemAssigned"
   }
 }
-
