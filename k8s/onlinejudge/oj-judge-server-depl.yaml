@@ -34,11 +34,11 @@ spec:
               subPath: judge_server/run
           resources:
             limits:
-              memory: "200Mi"
-              cpu: "150m"
+              memory: "400Mi"
+              cpu: "500m"
             requests:
-              memory: "100Mi"
-              cpu: "50m"
+              memory: "170Mi"
+              cpu: "150m"
           env:
             - name: SERVICE_URL
               valueFrom:
