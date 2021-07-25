@@ -13,8 +13,10 @@ spec:
     spec:
       volumes:
         - name: oj-storage
-          persistentVolumeClaim:
-            claimName: oj-pvc
+          azureDisk:
+            kind: Managed
+            diskName: cscms-oj-disk
+            diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourceGroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-oj-disk
       containers:
         - name: postgres
           image: postgres:10-alpine
