@@ -36,10 +36,10 @@ spec:
               subPath: judge_server/run
           resources:
             limits:
-              memory: "400Mi"
+              memory: "350Mi"
               cpu: "500m"
             requests:
-              memory: "170Mi"
+              memory: "128Mi"
               cpu: "150m"
           env:
             - name: SERVICE_URL
