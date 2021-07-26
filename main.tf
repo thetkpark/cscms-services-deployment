@@ -55,40 +55,6 @@ resource "azurerm_kubernetes_cluster" "cscms-services" {
   }
 }
 
-data "azurerm_snapshot" "blog_sethanantp_snapshot" {
-  name = "blog-sethanantp-july-25-2021-snapshort"
-  resource_group_name = data.azurerm_resource_group.cscms_rg.name
-}
-data "azurerm_snapshot" "cscms_oj_snapshot" {
-  name = "cscms-oj-july-25-2021-snapshort"
-  resource_group_name = data.azurerm_resource_group.cscms_rg.name
-}
-
-resource "azurerm_managed_disk" "blog_sethanantp_disk" {
-  name = "blog-sethanantp-disk"
-  location = data.azurerm_resource_group.cscms_rg.location
-  storage_account_type = "Standard_LRS"
-  disk_size_gb = "2"
-  create_option = "Copy"
-  source_resource_id = data.azurerm_snapshot.blog_sethanantp_snapshot.source_resource_id
-  resource_group_name = "MC_cscms.me_cscms-services_southeastasia"
-  depends_on = [
-    azurerm_kubernetes_cluster.cscms-services
-  ]
-}
-resource "azurerm_managed_disk" "cscms_oj_disk" {
-  name = "cscms-oj-disk"
-  location = data.azurerm_resource_group.cscms_rg.location
-  storage_account_type = "Standard_LRS"
-  disk_size_gb = "5"
-  create_option = "Copy"
-  source_resource_id = data.azurerm_snapshot.cscms_oj_snapshot.source_resource_id
-  resource_group_name = "MC_cscms.me_cscms-services_southeastasia"
-  depends_on = [
-    azurerm_kubernetes_cluster.cscms-services
-  ]
-}
-
 resource "helm_release" "ingress_nginx" {
   name             = "ingress-nginx"
   namespace        = "ingress-nginx"
