@@ -20,7 +20,7 @@ spec:
         image: thetkpark/temp-storage
         resources:
           limits:
-            memory: "300Mi"
+            memory: "500Mi"
             cpu: "50m"
           requests:
             memory: "128Mi"
@@ -35,7 +35,7 @@ spec:
           - name: CLIENT_PATH
             value: /app/client
           - name: ENTRYPOINT
-            value: https://tmp-test.cscms.me
+            value: https://tmp.cscms.me
           - name: BUCKET_NAME
             valueFrom:
               secretKeyRef:
