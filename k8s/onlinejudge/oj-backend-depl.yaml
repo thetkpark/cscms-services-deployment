@@ -29,11 +29,11 @@ spec:
               subPath: backend
           resources:
             limits:
-              memory: "400Mi"
-              cpu: "100m"
+              memory: "512Mi"
+              cpu: "150m"
             requests:
               memory: "256Mi"
-              cpu: "20m"
+              cpu: "30m"
           env:
             - name: POSTGRES_HOST
               valueFrom:

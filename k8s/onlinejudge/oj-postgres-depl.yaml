@@ -28,7 +28,7 @@ spec:
               subPath: postgres
           resources:
             limits:
-              memory: "150Mi"
+              memory: "160Mi"
               cpu: "30m"
             requests:
               memory: "80Mi"
