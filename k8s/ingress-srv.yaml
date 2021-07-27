@@ -12,14 +12,14 @@ spec:
       - aka-test.cscms.me
       - timetable.cscms.me
       - tmp.cscms.me
-      - test.cscms.me
+      - cscms.me
       - monitor.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog.sethanantp.com
       secretName: sethanantp-tls
   rules:
-    - host: test.cscms.me
+    - host: cscms.me
       http:
         paths:
         - pathType: Prefix
