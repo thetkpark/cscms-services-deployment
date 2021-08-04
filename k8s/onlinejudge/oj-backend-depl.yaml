@@ -30,10 +30,10 @@ spec:
           resources:
             limits:
               memory: "512Mi"
-              cpu: "150m"
+              cpu: "50m"
             requests:
               memory: "256Mi"
-              cpu: "30m"
+              cpu: "15m"
           env:
             - name: POSTGRES_HOST
               valueFrom:
