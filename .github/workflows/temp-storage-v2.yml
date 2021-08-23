@@ -24,6 +24,7 @@ jobs:
           cluster-name: ${{env.CLUSTER_NAME}}
       - name: Apply all resources
         run: |
+          kubectl apply -f k8s/tempstorage/temp-storage-v2-configmap.yaml
           kubectl apply -f k8s/tempstorage/temp-storage-v2-depl.yaml
           kubectl apply -f k8s/tempstorage/temp-storage-v2-srv.yaml
       - name: Apply new version
