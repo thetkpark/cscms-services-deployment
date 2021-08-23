@@ -27,6 +27,7 @@ jobs:
           kubectl apply -f k8s/tempstorage/temp-storage-v2-configmap.yaml
           kubectl apply -f k8s/tempstorage/temp-storage-v2-depl.yaml
           kubectl apply -f k8s/tempstorage/temp-storage-v2-srv.yaml
+          kubectl apply -f k8s/tempstorage/temp-storage-v2-cleaner-cronjob.yaml
       - name: Apply new version
         run: |
           kubectl rollout restart deployment temp-storage-v2-depl
