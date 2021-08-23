@@ -4,3 +4,5 @@ metadata:
   name: temp-storage-v2-configmap
 data:
   STORE_DURATION: "30"
+  STORAGE_PATH: /mnt/storage-disk/data
+  SQLITE_PATH: /mnt/storage-disk/file.db
