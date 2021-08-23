@@ -11,31 +11,35 @@ spec:
       labels:
         app: temp-storage-v2
     spec:
+      volumes:
+        - name: temp-storage-volume
+          azureDisk:
+            kind: Managed
+            diskName: cscms-temp-storage-disk
+            diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-temp-storage-disk
       containers:
       - name: temp-storage-v2
         image: thetkpark/cscms-temp-storage
         resources:
           limits:
-            memory: "500Mi"
+            memory: "150Mi"
             cpu: "50m"
           requests:
-            memory: "128Mi"
+            memory: "50Mi"
             cpu: "20m"
         envFrom:
           - secretRef:
               name: temp-storage-v2-secret
               optional: false
+        env:
+          - name: STORAGE_PATH
+            value: /mnt/storage-disk/data
+          - name: SQLITE_PATH
+            value: /mnt/storage-disk/file.db
         ports:
         - containerPort: 5000
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: temp-storage-v2-srv
-spec:
-  selector:
-    app: temp-storage-v2
-  ports:
-  - port: 5000
-    targetPort: 5000
+        volumeMounts:
+          - name: temp-storage-volume
+            mountPath: /mnt/storage-disk
+            readOnly: false
+            
