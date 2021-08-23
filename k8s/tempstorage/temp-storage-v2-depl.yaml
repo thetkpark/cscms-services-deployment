@@ -25,6 +25,12 @@ spec:
           - secretRef:
               name: temp-storage-v2-secret
               optional: false
+          - configMapRef:
+              name: temp-storage-v2-configmap
+              optional: true
+        env:
+          - name: PORT
+            value: "5000"
         ports:
         - containerPort: 5000
 
