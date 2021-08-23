@@ -33,7 +33,7 @@ spec:
               optional: false
           - configMapRef:
               name: temp-storage-v2-configmap
-              optional: true
+              optional: false
         env:
           - name: PORT
             value: "5000"

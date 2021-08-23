@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: temp-storage-v2-cleaner-cronjob
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+          - name: temp-storage-volume
+            azureDisk:
+              kind: Managed
+              diskName: cscms-temp-storage-disk
+              diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-temp-storage-disk
+          containers:
+          - name: temp-storage-v2-cleaner
+            image: thetkpark/cscms-temp-storage
+            imagePullPolicy: Always
+            command:
+              - /app/cleaner
+            envFrom:
+              - configMapRef:
+                  name: temp-storage-v2-configmap
+                  optional: false
+            volumeMounts:
+              - name: temp-storage-volume
+                mountPath: /mnt/storage-disk
+                readOnly: false
+          
+      
