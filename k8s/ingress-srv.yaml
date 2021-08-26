@@ -15,6 +15,7 @@ spec:
       - cscms.me
       - monitor.cscms.me
       - tmp-v2.cscms.me
+      - papaya.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog.sethanantp.com
