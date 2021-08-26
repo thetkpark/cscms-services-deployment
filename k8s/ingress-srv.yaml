@@ -87,6 +87,16 @@ spec:
               name: temp-storage-v2-srv
               port: 
                 number: 5000
+    - host: papaya.cscms.me
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: pogpog-papaya-backend-api-srv
+              port: 
+                number: 5000
     - host: blog.sethanantp.com
       http:
         paths:

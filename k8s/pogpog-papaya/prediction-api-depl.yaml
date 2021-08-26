@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pogpog-papaya-prediction-api-depl
+spec:
+  selector:
+    matchLabels:
+      app: pogpog-papaya-prediction-api
+  template:
+    metadata:
+      labels:
+        app: pogpog-papaya-prediction-api
+    spec:
+      containers:
+      - name: prediction-api
+        image: thetkpark/pogpog-papaya-prediction-api
+        resources:
+          limits:
+            memory: "400Mi"
+            cpu: "100m"
+          requests:
+            memory: "280Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 8000
