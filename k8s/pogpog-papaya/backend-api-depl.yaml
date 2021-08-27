@@ -26,4 +26,4 @@ spec:
         - containerPort: 5000
         env:
           - name: PREDICTION_API_HOST
-            value: http://pogpog-papaya-prediction-api-srv:8000
+            value: pogpog-papaya-prediction-api-srv:8000
