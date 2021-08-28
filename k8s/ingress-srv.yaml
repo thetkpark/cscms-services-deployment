@@ -14,7 +14,6 @@ spec:
       - tmp.cscms.me
       - cscms.me
       - monitor.cscms.me
-      - tmp-v2.cscms.me
       - papaya.cscms.me
       secretName: cscms-tls
     - hosts:
@@ -65,7 +64,7 @@ spec:
           path: /?(.*)
           backend:
             service:
-              name: temp-storage-srv
+              name: temp-storage-v2-srv
               port: 
                 number: 5000
     - host: monitor.cscms.me
@@ -78,16 +77,6 @@ spec:
               name: grafana-srv
               port: 
                 number: 80
-    - host: tmp-v2.cscms.me
-      http:
-        paths:
-        - pathType: Prefix
-          path: /?(.*)
-          backend:
-            service:
-              name: temp-storage-v2-srv
-              port: 
-                number: 5000
     - host: papaya.cscms.me
       http:
         paths:
