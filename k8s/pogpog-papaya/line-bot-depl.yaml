@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pogpog-papaya-line-bot-depl
+spec:
+  selector:
+    matchLabels:
+      app: pogpog-papaya-line-bot
+  template:
+    metadata:
+      labels:
+        app: pogpog-papaya-line-bot
+    spec:
+      containers:
+      - name: pogpog-papaya-line-bot
+        image: thetkpark/pogpog-papaya-line-bot
+        resources:
+          resources:
+          limits:
+            memory: "100Mi"
+            cpu: "30m"
+          requests:
+            memory: "30Mi"
+            cpu: "20m"
+        ports:
+        - containerPort: 3000
+        env:
+          - name: BACKEND_API_URL
+            value: http://pogpog-papaya-backend-api-srv:5000
+        envFrom:
+          - secretRef:
+              name: pogpog-papaya-line-bot-secret
+          

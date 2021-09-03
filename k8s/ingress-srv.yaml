@@ -87,6 +87,13 @@ spec:
               name: pogpog-papaya-backend-api-srv
               port: 
                 number: 5000
+        - pathType: Prefix
+          path: /line/?(.*)
+          backend:
+            service:
+              name: pogpog-papaya-line-bot-srv
+              port: 
+                number: 3000
     - host: blog.sethanantp.com
       http:
         paths:
