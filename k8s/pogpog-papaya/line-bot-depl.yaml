@@ -17,11 +17,11 @@ spec:
         resources:
           resources:
           limits:
-            memory: "100Mi"
-            cpu: "30m"
+            memory: "70Mi"
+            cpu: "25m"
           requests:
-            memory: "30Mi"
-            cpu: "20m"
+            memory: "40Mi"
+            cpu: "5m"
         ports:
         - containerPort: 3000
         env:
