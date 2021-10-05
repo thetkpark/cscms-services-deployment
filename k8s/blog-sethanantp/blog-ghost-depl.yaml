@@ -22,10 +22,10 @@ spec:
         image: ghost
         resources:
           limits:
-            memory: "256Mi"
-            cpu: "50m"
+            memory: "400Mi"
+            cpu: "100m"
           requests:
-            memory: "128Mi"
+            memory: "150Mi"
             cpu: "10m"
         ports:
         - containerPort: 2368 
