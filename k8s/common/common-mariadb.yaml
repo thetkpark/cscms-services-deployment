@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: common-mariadb-depl
+spec:
+  selector:
+    matchLabels:
+      app: common-mariadb
+  template:
+    metadata:
+      labels:
+        app: common-mariadb
+    spec:
+      volumes:
+        - name: common-pvc-volume
+          persistentVolumeClaim:
+            claimName: common-pvc
+      containers:
+      - name: common-mariadb
+        image: mariadb
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+          requests:
+            memory: "32Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MARIADB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: MARIADB_ROOT_PASSWORD
+                optional: false
+        volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: common-pvc-volume
+            subPath: common-mariadb
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: common-mariadb-srv
+spec:
+  selector:
+    app: common-mariadb
+  ports:
+  - port: 3306
+    targetPort: 3306
