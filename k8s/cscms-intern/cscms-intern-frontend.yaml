@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cscms-intern-frontend-depl
+spec:
+  selector:
+    matchLabels:
+      app: cscms-intern-frontend-depl
+  template:
+    metadata:
+      labels:
+        app: cscms-intern-frontend-depl
+    spec:
+      containers:
+      - name: cscms-intern-frontend-depl
+        image: thetkpark/cscms-intern-frontend
+        resources:
+          limits:
+            memory: "75Mi"
+            cpu: "20m"
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cscms-intern-frontend-srv
+spec:
+  selector:
+    app: cscms-intern-frontend-depl
+  ports:
+  - port: 3000
+    targetPort: 3000

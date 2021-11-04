@@ -118,6 +118,23 @@ spec:
               name: crypto-price-bot-srv
               port: 
                 number: 3000
+    - host: intern.cscms.me
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: cscms-intern-frontend-srv
+              port: 
+                number: 3000
+        - pathType: Prefix
+          path: /api/?(.*)
+          backend:
+            service:
+              name: cscms-intern-backend-srv
+              port: 
+                number: 5000
     - host: blog.sethanantp.com
       http:
         paths:
