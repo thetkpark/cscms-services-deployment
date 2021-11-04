@@ -29,4 +29,6 @@ jobs:
       - name: Apply new version
         run: |
           kubectl rollout restart deployment cscms-intern-backend-depl
+          kubectl rollout restart deployment cscms-intern-frontend-depl
+          kubectl rollout status deployment cscms-intern-backend-depl
           kubectl rollout status deployment cscms-intern-frontend-depl
