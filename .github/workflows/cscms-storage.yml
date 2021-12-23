@@ -26,6 +26,7 @@ jobs:
         run: |
           kubectl apply -f k8s/cscms-storage/cscms-storage-configmap.yaml
           kubectl apply -f k8s/cscms-storage/cscms-storage-depl.yaml
+          kubectl apply -f k8s/cscms-storage/cscms-storage-cleaner-cronjob.yaml
           kubectl apply -f k8s/cscms-storage/cscms-storage-srv.yaml
       - name: Apply new version
         run: |
