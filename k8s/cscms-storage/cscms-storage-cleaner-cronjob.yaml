@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: temp-storage-v2-cleaner-cronjob
+  name: cscms-storage-cleaner-cronjob
 spec:
   schedule: "0 * * * *"
   jobTemplate:
@@ -16,14 +16,14 @@ spec:
               diskName: cscms-temp-storage-disk
               diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-temp-storage-disk
           containers:
-          - name: temp-storage-v2-cleaner
-            image: thetkpark/cscms-temp-storage
+          - name: cscms-storage-cleaner-job
+            image: thetkpark/cscms-storage
             imagePullPolicy: Always
             command:
               - /app/cleaner
             envFrom:
               - configMapRef:
-                  name: temp-storage-v2-configmap
+                  name: cscms-storage-configmap
                   optional: false
             volumeMounts:
               - name: temp-storage-volume
