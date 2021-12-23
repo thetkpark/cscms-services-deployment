@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: temp-storage-v2-srv
+  name: cscms-storage-srv
 spec:
   selector:
-    app: temp-storage-v2
+    app: cscms-storage-depl
   ports:
   - port: 5000
     targetPort: 5000

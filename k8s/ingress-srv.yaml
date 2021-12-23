@@ -13,7 +13,7 @@ spec:
     - hosts: 
       - aka-test.cscms.me
       - timetable.cscms.me
-      - tmp.cscms.me
+      - storage.cscms.me
       - cscms.me
       - monitor.cscms.me
       - papaya.cscms.me
@@ -61,14 +61,14 @@ spec:
               name: timetable-client-srv
               port: 
                 number: 80
-    - host: tmp.cscms.me
+    - host: storage.cscms.me
       http:
         paths:
         - pathType: Prefix
           path: /?(.*)
           backend:
             service:
-              name: temp-storage-v2-srv
+              name: cscms-storage-srv
               port: 
                 number: 5000
     - host: monitor.cscms.me

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: temp-storage-v2-depl
+  name: cscms-storage-depl
 spec:
   selector:
     matchLabels:
-      app: temp-storage-v2
+      app: cscms-storage-depl
   template:
     metadata:
       labels:
-        app: temp-storage-v2
+        app: cscms-storage-depl
     spec:
       volumes:
         - name: temp-storage-volume
@@ -18,7 +18,7 @@ spec:
             diskName: cscms-temp-storage-disk
             diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-temp-storage-disk
       containers:
-      - name: temp-storage-v2
+      - name: cscms-storage-depl
         image: thetkpark/cscms-temp-storage
         resources:
           limits:
@@ -29,10 +29,10 @@ spec:
             cpu: "20m"
         envFrom:
           - secretRef:
-              name: temp-storage-v2-secret
+              name: cscms-storage-secret
               optional: false
           - configMapRef:
-              name: temp-storage-v2-configmap
+              name: cscms-storage-configmap
               optional: false
         ports:
           - containerPort: 5000
