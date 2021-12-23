@@ -1,5 +1,5 @@
 
-name: Deploy CSCMS Temp Storage V2
+name: Deploy CSCMS Intern
 
 on:
   push:
