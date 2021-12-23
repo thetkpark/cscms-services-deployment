@@ -14,6 +14,7 @@ spec:
       - aka-test.cscms.me
       - timetable.cscms.me
       - storage.cscms.me
+      - tmp.cscms.me
       - cscms.me
       - monitor.cscms.me
       - papaya.cscms.me
@@ -62,6 +63,16 @@ spec:
               port: 
                 number: 80
     - host: storage.cscms.me
+      http:
+        paths:
+        - pathType: Prefix
+          path: /?(.*)
+          backend:
+            service:
+              name: cscms-storage-srv
+              port: 
+                number: 5000
+    - host: tmp.cscms.me
       http:
         paths:
         - pathType: Prefix
