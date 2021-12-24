@@ -40,6 +40,11 @@ spec:
           - name: temp-storage-volume
             mountPath: /mnt/storage-disk
             readOnly: false
+        readinessProbe:
+          httpGet:
+            path: /api/ping
+            port: 5000
+          initialDelaySeconds: 5
         env:
           - name: DB_HOST
             valueFrom:
