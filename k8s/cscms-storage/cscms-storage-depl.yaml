@@ -40,6 +40,12 @@ spec:
           - name: temp-storage-volume
             mountPath: /mnt/storage-disk
             readOnly: false
+        livenessProbe:
+          exec:
+            command:
+              - cat
+              - /tmp/cscms-storage-healthy
+          initialDelaySeconds: 3
         readinessProbe:
           httpGet:
             path: /api/ping
