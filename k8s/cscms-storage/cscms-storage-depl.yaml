@@ -22,11 +22,11 @@ spec:
         image: thetkpark/cscms-storage
         resources:
           limits:
-            # memory: "200Mi"
-            cpu: "100m"
+            memory: "200Mi"
+            cpu: "40m"
           requests:
-            memory: "70Mi"
-            cpu: "20m"
+            memory: "40Mi"
+            cpu: "10m"
         envFrom:
           - secretRef:
               name: cscms-storage-secret
