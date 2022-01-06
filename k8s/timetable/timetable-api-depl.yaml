@@ -27,7 +27,7 @@ spec:
           httpGet:
             path: /api/healthz
             port: 4000
-          initialDelaySeconds: 10
+          initialDelaySeconds: 90
           failureThreshold: 5
           timeoutSeconds: 2
 
