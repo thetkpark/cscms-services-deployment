@@ -23,4 +23,11 @@ spec:
             cpu: "1m"
         ports:
         - containerPort: 4000
+        readinessProbe:
+          httpGet:
+            path: /api/healthz
+            port: 4000
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          timeoutSeconds: 2
 
