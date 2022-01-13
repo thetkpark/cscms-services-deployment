@@ -75,8 +75,11 @@ spec:
     - host: tmp.cscms.me
       http:
         paths:
+        # - pathType: Prefix
+        #   path: /
+        #   backend:
         - pathType: Prefix
-          path: /?(.*)
+          path: /(.+)
           backend:
             service:
               name: cscms-storage-srv
