@@ -19,7 +19,8 @@ spec:
             diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourceGroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/blog-sethanantp-disk
       containers:
       - name: blog-ghost
-        image: ghost
+        image: ghost:5
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "400Mi"
