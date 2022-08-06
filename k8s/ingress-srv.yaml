@@ -11,15 +11,10 @@ metadata:
 spec:
   tls:
     - hosts: 
-      - aka-test.cscms.me
       - timetable.cscms.me
       - storage.cscms.me
-      - tmp.cscms.me
       - cscms.me
       - monitor.cscms.me
-      - papaya.cscms.me
-      - plex.cscms.me
-      - crypto.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog.sethanantp.com
@@ -35,16 +30,6 @@ spec:
               name: oj-backend-srv
               port: 
                 number: 8000
-    - host: aka-test.cscms.me
-      http:
-        paths:
-        - pathType: Prefix
-          path: /?(.*)
-          backend:
-            service:
-              name: aka-cscms-srv
-              port: 
-                number: 3050
     - host: timetable.cscms.me
       http:
         paths:
@@ -72,19 +57,6 @@ spec:
               name: cscms-storage-srv
               port: 
                 number: 5000
-    - host: tmp.cscms.me
-      http:
-        paths:
-        # - pathType: Prefix
-        #   path: /
-        #   backend:
-        - pathType: Prefix
-          path: /(.+)
-          backend:
-            service:
-              name: cscms-storage-srv
-              port: 
-                number: 5000
     - host: monitor.cscms.me
       http:
         paths:
@@ -95,43 +67,6 @@ spec:
               name: grafana-srv
               port: 
                 number: 80
-    - host: plex.cscms.me
-      http:
-        paths:
-        - pathType: Prefix
-          path: /?(.*)
-          backend:
-            service:
-              name: plex-server-srv
-              port: 
-                number: 32400
-    - host: papaya.cscms.me
-      http:
-        paths:
-        - pathType: Prefix
-          path: /?(.*)
-          backend:
-            service:
-              name: pogpog-papaya-backend-api-srv
-              port: 
-                number: 5000
-        - pathType: Prefix
-          path: /line/?(.*)
-          backend:
-            service:
-              name: pogpog-papaya-line-bot-srv
-              port: 
-                number: 3000
-    - host: crypto.cscms.me
-      http:
-        paths:
-        - pathType: Prefix
-          path: /?(.*)
-          backend:
-            service:
-              name: crypto-price-bot-srv
-              port: 
-                number: 3000
     - host: intern.cscms.me
       http:
         paths:
