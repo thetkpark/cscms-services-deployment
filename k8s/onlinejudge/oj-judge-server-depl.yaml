@@ -64,6 +64,7 @@ spec:
                 - /code/service.py
             initialDelaySeconds: 10
             periodSeconds: 5
+            timeoutSeconds: 3
           securityContext:
             capabilities:
               drop:
