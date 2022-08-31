@@ -13,10 +13,8 @@ spec:
     spec:
       volumes:
         - name: oj-storage
-          azureDisk:
-            kind: Managed
-            diskName: cscms-onlinejudge-k8s
-            diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-onlinejudge-k8s
+          persistentVolumeClaim:
+            claimName: oj-pvc
       containers:
         - name: backend
           image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
