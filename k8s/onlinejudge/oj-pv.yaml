@@ -12,6 +12,6 @@ spec:
   csi:
     driver: disk.csi.azure.com
     readOnly: false
-    volumeHandle: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourceGroups/MC_CSCMS.ME_CSCMS-SERVICES_SOUTHEASTASIA/providers/Microsoft.Compute/disks/cscms-onlinejudge-k8s
+    volumeHandle: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/oj-storage-disk
     volumeAttributes:
       fsType: ext4
