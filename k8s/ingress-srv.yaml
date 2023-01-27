@@ -15,6 +15,7 @@ spec:
       - storage.cscms.me
       - cscms.me
       - monitor.cscms.me
+      - intern.cscms.me
       secretName: cscms-tls
     - hosts:
       - blog.sethanantp.com
