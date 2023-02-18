@@ -7,6 +7,6 @@ spec:
     requests:
       storage: 4Gi
   volumeMode: Filesystem
-  storageClassName: default
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
