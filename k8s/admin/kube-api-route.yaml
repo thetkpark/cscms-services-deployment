@@ -2,7 +2,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: kube-api-route
-  namespace: default
 spec:
   entryPoints:
     - websecure
