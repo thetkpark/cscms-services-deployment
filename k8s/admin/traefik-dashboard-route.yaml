@@ -11,4 +11,6 @@ spec:
     services:
     - name: api@internal
       kind: TraefikService
-      
+    middlewares:
+      - name: admin-dashboard-basic-auth-middleware
+        namespace: traefik
