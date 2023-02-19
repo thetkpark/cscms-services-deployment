@@ -96,3 +96,5 @@ $RECYCLE.BIN/
 
 **/*secret.yaml
 **/*secret.yml
+
+**/tunnel-config.yaml
