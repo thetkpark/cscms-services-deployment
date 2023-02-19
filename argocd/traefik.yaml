@@ -4,13 +4,6 @@ metadata:
   name: traefik
   namespace: argocd
 spec:
-  destination:
-    namespace: traefik
-    server: 'https://kubernetes.default.svc'
-  source:
-    repoURL: 'https://traefik.github.io/charts'
-    targetRevision: 21.1.0
-    chart: traefik
   project: default
   syncPolicy:
     automated:
@@ -18,3 +11,14 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  destination:
+    namespace: traefik
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://traefik.github.io/charts'
+    targetRevision: 21.1.0
+    chart: traefik
+    helm:
+      parameters:
+        - name: "providers.kubernetesCRD.allowCrossNamespace"
+          value: "true"
