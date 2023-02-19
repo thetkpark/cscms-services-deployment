@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-dashboard-route
+  namespace: admin
 spec:
   entryPoints:
     - websecure
@@ -11,6 +12,6 @@ spec:
     services:
     - name: api@internal
       kind: TraefikService
-    # middlewares:
-    #   - name: admin-dashboard-basic-auth-middleware
-    #     namespace: traefik
+    middlewares:
+      - name: admin-dashboard-basic-auth-middleware
+        namespace: admin

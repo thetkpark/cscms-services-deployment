@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: argocd-dashboard-route
+  namespace: admin
 spec:
   entryPoints:
     - websecure
@@ -13,4 +14,6 @@ spec:
       kind: Service
       namespace: argocd
       port: 80
-      
+    middlewares:
+      - name: admin-dashboard-basic-auth-middleware
+        namespace: admin

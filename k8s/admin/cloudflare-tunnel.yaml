@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-cloudflare-tunnel
+  namespace: admin
+spec:
+  selector:
+    matchLabels:
+      app: admin-cloudflare-tunnel
+  template:
+    metadata:
+      labels:
+        app: admin-cloudflare-tunnel
+    spec:
+      volumes:
+        - name: config-file
+          secret:
+            secretName: admin-cloudflared-config
+      containers:
+      - name: admin-cloudflare-tunnel
+        image: cloudflare/cloudflared
+        volumeMounts:
+          - mountPath: /data
+            name: config-file
+        args:
+          - tunnel
+          - --config
+          - /data/config.yaml
+          - run

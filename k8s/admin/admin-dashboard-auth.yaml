@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: admin-dashboard-basic-auth-user
-  namespace: traefik
+  namespace: admin
 stringData:
   users: admin:$2y$10$MNvkYSSwmiU.a3HdH3qW6.7nCTF.pONAqkSAuRuK5dv6rRCiuSAKu
 
@@ -11,7 +11,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: admin-dashboard-basic-auth-middleware
-  namespace: traefik
+  namespace: admin
 spec:
   basicAuth:
     secret: admin-dashboard-basic-auth-user
