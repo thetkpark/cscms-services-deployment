@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onlinejudge
+  namespace: argocd
+spec:
+  destination:
+    namespace: onlinejudge
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s/onlinejudge
+    repoURL: https://github.com/thetkpark/cscms-services-deployment.git
+    targetRevision: argocd
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
