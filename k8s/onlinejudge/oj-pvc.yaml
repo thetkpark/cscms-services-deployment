@@ -5,9 +5,10 @@ metadata:
 spec:
   resources:
     requests:
-      storage: 16Gi
+      storage: 8Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  volumeName: oj-azure-disk
-  storageClassName: managed-csi
+  storageClassName: local-path
+  volumeName: oj-pv
+  

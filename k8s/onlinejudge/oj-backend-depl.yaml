@@ -59,10 +59,7 @@ spec:
                   name: oj-secret
                   key: JUDGE_SERVER_TOKEN
             - name: REDIS_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: common-configmap
-                  key: REDIS_HOST
+              value: oj-redis-srv
 ---
 apiVersion: v1
 kind: Service

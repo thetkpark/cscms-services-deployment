@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oj-redis
+  namespace: onlinejudge
+spec:
+  selector:
+    matchLabels:
+      app: oj-redis
+  template:
+    metadata:
+      labels:
+        app: oj-redis
+    spec:
+      containers:
+      - name: oj-redis
+        image: redis:6-alpine
+        ports:
+        - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oj-redis-srv
+  namespace: onlinejudge
+spec:
+  selector:
+    app: oj-redis
+  ports:
+  - port: 6379
+    targetPort: 6379
