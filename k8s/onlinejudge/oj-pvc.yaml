@@ -10,5 +10,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: local-path
-  volumeName: oj-pv
   
