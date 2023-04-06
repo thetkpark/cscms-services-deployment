@@ -11,7 +11,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: admin-dashboard-basic-auth-middleware
-  namespace: admin
 spec:
   basicAuth:
     secret: admin-dashboard-basic-auth-user
