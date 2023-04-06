@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`cscms.me`) 
+  - match: Host(`test.cscms.me`) 
     kind: Rule
     services:
     - name: oj-backend-srv
