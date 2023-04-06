@@ -32,6 +32,14 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "15m"
+          livenessProbe:
+            httpGet:
+              path: "/"
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 20
+            failureThreshold: 6
           env:
             - name: POSTGRES_HOST
               valueFrom:
