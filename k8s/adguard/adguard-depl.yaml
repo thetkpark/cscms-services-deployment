@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adguard-home-depl
+spec:
+  selector:
+    matchLabels:
+      app: adguard-home-depl
+  template:
+    metadata:
+      labels:
+        app: adguard-home-depl
+    spec:
+      containers:
+      - name: adguard-home-depl
+        image: adguard/adguardhome
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        - containerPort: 443
+          protocol: TCP
+          

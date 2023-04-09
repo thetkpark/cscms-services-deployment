@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-dashboard-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`dns.cscms.me`)
+    kind: Rule
+    services:
+    - name: adguard-home-service
+      kind: Service
+      namespace: adguard
+      port: 443
+    tls:
+      passthrough: true
