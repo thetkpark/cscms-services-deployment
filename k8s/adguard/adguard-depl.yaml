@@ -30,6 +30,10 @@ spec:
         - containerPort: 443
           protocol: TCP
         volumeMounts:
-          - mountPath: /opt/adguardhome
+          - mountPath: /opt/adguardhome/work
             name: adguard-vol
+            subPath: work
+          - mountPath: /opt/adguardhome/conf
+            name: adguard-vol
+            subPath: conf
           
