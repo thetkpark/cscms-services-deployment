@@ -1,14 +1,14 @@
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRouteTCP
-# metadata:
-#   name: traefik-tcp-route
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#   - match: Host(`dns.cscms.me`)
-#     services:
-#     - name: adguard-home-service
-#       port: 443
-#   tls:
-#     passthrough: true
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: traefik-tcp-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`dns.cscms.me`)
+    services:
+    - name: adguard-home-service
+      port: 443
+  tls:
+    passthrough: true
