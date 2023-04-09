@@ -7,7 +7,6 @@ spec:
     - websecure
   routes:
   - match: HostSNI(`dns.cscms.me`)
-    kind: Rule
     services:
     - name: adguard-home-service
       port: 443
