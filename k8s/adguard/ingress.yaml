@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: adguard-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls.passthrough: "true"
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: dns.cscms.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: adguard-home-service
+            port: 
+              number: 443
