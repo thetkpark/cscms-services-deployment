@@ -23,6 +23,8 @@ spec:
             memory: "1Gi"
             cpu: "500m"
         ports:
+        - containerPort: 3000
+          protocol: TCP
         - containerPort: 80
           protocol: TCP
         - containerPort: 443
