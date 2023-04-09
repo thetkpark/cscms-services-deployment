@@ -9,4 +9,4 @@ spec:
   - port: 443
     targetPort: 443
   - port: 80
-    targetPor: 80
+    targetPort: 80
