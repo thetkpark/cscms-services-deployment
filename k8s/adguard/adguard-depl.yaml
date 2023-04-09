@@ -22,6 +22,9 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "50m"
         ports:
         - containerPort: 3000
           protocol: TCP
