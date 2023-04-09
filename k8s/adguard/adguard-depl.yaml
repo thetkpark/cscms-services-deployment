@@ -11,6 +11,10 @@ spec:
       labels:
         app: adguard-home-depl
     spec:
+      volumes:
+        - name: adguard-vol
+          persistentVolumeClaim:
+            claimName: adguard-pvc
       containers:
       - name: adguard-home-depl
         image: adguard/adguardhome
@@ -23,4 +27,7 @@ spec:
           protocol: TCP
         - containerPort: 443
           protocol: TCP
+        volumeMounts:
+          - mountPath: /opt/adguardhome
+            name: adguard-vol
           
