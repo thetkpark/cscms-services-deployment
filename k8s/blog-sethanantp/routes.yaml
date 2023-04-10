@@ -6,9 +6,14 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`blog-test.cscms.me`) 
+  - match: Host(`blog.sethanantp.com`) 
     kind: Rule
     services:
     - name: blog-ghost-srv
       kind: Service
       port: 2368
+  tls:
+    secretName: blog-sethanantp-tls
+    domains:
+    - main: blog.sethanantp.com
+    
