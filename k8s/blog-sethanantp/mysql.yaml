@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-mysql-depl
+spec:
+  selector:
+    matchLabels:
+      app: blog-mysql-depl
+  template:
+    metadata:
+      labels:
+        app: blog-mysql-depl
+    spec:
+      volumes:
+        - name: blog-cms-volume
+          persistentVolumeClaim:
+            claimName: blog-ghost-pvc
+            readOnly: false
+      containers:
+      - name: blog-mysql-depl
+        image: mysql:8
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: blog-cms-volume
+          subPath: mysql
+          readOnly: false
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-mysql-srv
+spec:
+  selector:
+    app: blog-mysql-depl
+  ports:
+  - port: 3306
+    targetPort: 3306
