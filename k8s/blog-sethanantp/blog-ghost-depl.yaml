@@ -18,7 +18,7 @@ spec:
             readOnly: false
       containers:
       - name: blog-ghost
-        image: ghost:5.2.3
+        image: ghost:5
         imagePullPolicy: Always
         resources:
           limits:
