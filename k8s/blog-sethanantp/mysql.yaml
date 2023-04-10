@@ -34,7 +34,7 @@ spec:
           subPath: mysql
           readOnly: false
         env:
-        - name: database__connection__password
+        - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: blog-ghost-secret
