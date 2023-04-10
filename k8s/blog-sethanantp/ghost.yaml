@@ -50,11 +50,12 @@ spec:
           name: blog-cms-volume
           subPath: ghost
           readOnly: false
-        readinessProbe:
-          httpGet:
-            port: 2368
-          initialDelaySeconds: 30
-          failureThreshold: 6
+        # readinessProbe:
+        #   httpGet:
+        #     port: 2368
+        #   initialDelaySeconds: 30
+        #   failureThreshold: 6
+          
             
 ---
 apiVersion: v1
