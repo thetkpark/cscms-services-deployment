@@ -33,6 +33,12 @@ spec:
           name: blog-cms-volume
           subPath: mysql
           readOnly: false
+        env:
+        - name: database__connection__password
+          valueFrom:
+            secretKeyRef:
+              name: blog-ghost-secret
+              key: MYSQL_ROOT_PASSWORD
 ---
 
 apiVersion: v1
