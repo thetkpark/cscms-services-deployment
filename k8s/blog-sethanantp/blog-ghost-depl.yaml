@@ -38,4 +38,9 @@ spec:
           - mountPath: /var/lib/ghost/content
             name: blog-cms-volume
             readOnly: false
-
+        readinessProbe:
+          httpGet:
+            port: 2368
+          initialDelaySeconds: 30
+          failureThreshold: 6
+            
