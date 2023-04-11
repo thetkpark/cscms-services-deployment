@@ -21,10 +21,10 @@ spec:
         image: mysql:8
         resources:
           limits:
-            memory: "512Mi"
+            memory: "800Mi"
             cpu: "200m"
           requests:
-            memory: "64Mi"
+            memory: "450Mi"
             cpu: "50m"
         ports:
         - containerPort: 3306
