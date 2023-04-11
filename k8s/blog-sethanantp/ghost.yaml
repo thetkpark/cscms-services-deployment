@@ -18,7 +18,7 @@ spec:
             readOnly: false
       containers:
       - name: blog-ghost
-        image: ghost:5.2.3
+        image: ghost:5
         imagePullPolicy: Always
         resources:
           limits:
@@ -32,19 +32,19 @@ spec:
         env:
         - name: url
           value: https://blog.sethanantp.com
-        # - name: database__client
-        #   value: mysql
-        # - name: database__connection__host
-        #   value: blog-mysql-srv
-        # - name: database__connection__user
-        #   value: root
-        # - name: database__connection__password
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: blog-ghost-secret
-        #       key: MYSQL_ROOT_PASSWORD
-        # - name: database__connection__database
-        #   value: ghost
+        - name: database__client
+          value: mysql
+        - name: database__connection__host
+          value: blog-mysql-srv
+        - name: database__connection__user
+          value: root
+        - name: database__connection__password
+          valueFrom:
+            secretKeyRef:
+              name: blog-ghost-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: database__connection__database
+          value: ghost
         volumeMounts:
         - mountPath: /var/lib/ghost/content
           name: blog-cms-volume
