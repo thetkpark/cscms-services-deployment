@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: oj-judge-server-depl
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: oj-judge-server
@@ -35,7 +35,6 @@ spec:
           resources:
             limits:
               memory: "512Mi"
-              cpu: "300m"
             requests:
               memory: "180Mi"
               cpu: "100m"
