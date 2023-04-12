@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: oj-backend-depl
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: oj-backend
@@ -11,6 +12,7 @@ spec:
       labels:
         app: oj-backend
     spec:
+    
       volumes:
         - name: oj-storage
           persistentVolumeClaim:

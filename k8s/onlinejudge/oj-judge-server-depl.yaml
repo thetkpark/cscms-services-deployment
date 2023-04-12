@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: oj-judge-server-depl
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: oj-judge-server

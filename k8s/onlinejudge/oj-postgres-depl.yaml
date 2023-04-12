@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: oj-postgres-depl
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: oj-postgres

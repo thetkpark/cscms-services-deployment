@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: oj-redis
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: oj-redis
