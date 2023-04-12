@@ -27,11 +27,10 @@ spec:
               subPath: postgres
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "200m"
+              memory: "256Mi"
             requests:
-              memory: "160Mi"
-              cpu: "50m"
+              memory: "80Mi"
+              cpu: "40m"
           env:
             - name: POSTGRES_DB
               valueFrom:

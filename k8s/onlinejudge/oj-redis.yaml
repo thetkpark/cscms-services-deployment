@@ -17,6 +17,13 @@ spec:
         image: redis:6-alpine
         ports:
         - containerPort: 6379
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+          requests:
+            memory: "15Mi"
+            cpu: "10m"
 ---
 apiVersion: v1
 kind: Service

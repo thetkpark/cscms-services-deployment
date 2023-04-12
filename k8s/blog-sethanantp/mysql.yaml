@@ -22,10 +22,10 @@ spec:
         resources:
           limits:
             memory: "800Mi"
-            cpu: "200m"
+            cpu: "100m"
           requests:
             memory: "450Mi"
-            cpu: "50m"
+            cpu: "20m"
         ports:
         - containerPort: 3306
         volumeMounts:

@@ -30,9 +30,8 @@ spec:
           resources:
             limits:
               memory: "1Gi"
-              cpu: "1000m"
             requests:
-              memory: "350Mi"
+              memory: "500Mi"
               cpu: "200m"
           # livenessProbe:
           #   httpGet:
