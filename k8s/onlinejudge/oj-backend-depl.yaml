@@ -29,11 +29,11 @@ spec:
               subPath: backend
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "50m"
+              memory: "1Gi"
+              cpu: "500m"
             requests:
-              memory: "256Mi"
-              cpu: "15m"
+              memory: "300Mi"
+              cpu: "100m"
           # livenessProbe:
           #   httpGet:
           #     path: "/"
