@@ -38,6 +38,11 @@ spec:
             secretKeyRef:
               name: cscms-storage-secret
               key: DB_PASSWORD
+        - name: MARIADB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: cscms-storage-configmap
+              key: DB_DATABASE
 
 ---
 apiVersion: v1
