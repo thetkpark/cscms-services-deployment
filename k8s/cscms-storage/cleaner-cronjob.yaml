@@ -12,7 +12,7 @@ spec:
           volumes:
           - name: cscms-storage-vol
             persistentVolumeClaim:
-            claimName: cscms-storage-pvc
+              claimName: cscms-storage-pvc
           containers:
           - name: cscms-storage-cleaner-job
             image: thetkpark/cscms-storage
