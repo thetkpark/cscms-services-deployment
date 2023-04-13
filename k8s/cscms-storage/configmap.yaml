@@ -8,3 +8,8 @@ data:
   PORT: "5000"
   ENTRYPOINT: https://storage.cscms.me
   IMAGE_ENTRYPOINT: https://img.cscms.me
+
+  DB_HOST: mariadb-srv
+  DB_PORT: "3306"
+  DB_USERNAME: root
+  DB_DATABASE: cscms-temp-storage

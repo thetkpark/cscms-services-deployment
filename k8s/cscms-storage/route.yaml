@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`storage.cscms.com`) 
+    kind: Rule
+    services:
+    - name: cscms-storage-srv
+      kind: Service
+      port: 5000

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: cscms-storage-depl
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: cscms-storage-depl
@@ -12,18 +13,16 @@ spec:
         app: cscms-storage-depl
     spec:
       volumes:
-        - name: temp-storage-volume
-          azureDisk:
-            kind: Managed
-            diskName: cscms-temp-storage-disk
-            diskURI: /subscriptions/599484bf-47d6-44f0-a3b8-d80b8c8637d6/resourcegroups/MC_cscms.me_cscms-services_southeastasia/providers/Microsoft.Compute/disks/cscms-temp-storage-disk
+        - name: cscms-storage-vol
+          persistentVolumeClaim:
+            claimName: cscms-storage-pvc
       containers:
       - name: cscms-storage-depl
         image: thetkpark/cscms-storage
         resources:
           limits:
             memory: "200Mi"
-            cpu: "40m"
+            cpu: "50m"
           requests:
             memory: "40Mi"
             cpu: "10m"
@@ -37,9 +36,10 @@ spec:
         ports:
           - containerPort: 5000
         volumeMounts:
-          - name: temp-storage-volume
+          - name: cscms-storage-vol
             mountPath: /mnt/storage-disk
             readOnly: false
+            subPath: files
         livenessProbe:
           exec:
             command:
@@ -51,27 +51,15 @@ spec:
             path: /api/ping
             port: 5000
           initialDelaySeconds: 5
-        env:
-          - name: DB_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: common-configmap
-                key: MARIADB_HOST
-          - name: DB_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: common-configmap
-                key: MARIADB_PORT
-          - name: DB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: common-secret
-                key: MARIADB_USER
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: common-secret
-                key: MARIADB_ROOT_PASSWORD
-          - name: DB_DATABASE
-            value: cscms-temp-storage
-            
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cscms-storage-srv
+spec:
+  selector:
+    app: cscms-storage-depl
+  ports:
+  - port: 5000
+    targetPort: 5000

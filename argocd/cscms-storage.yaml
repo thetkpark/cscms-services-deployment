@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cscms-storage
+  namespace: argocd
+spec:
+  destination:
+    namespace: cscms-storage
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s/cscms-storage
+    repoURL: https://github.com/thetkpark/cscms-services-deployment.git
+    targetRevision: argocd
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
