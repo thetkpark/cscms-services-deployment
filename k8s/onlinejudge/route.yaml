@@ -6,9 +6,14 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`cscms.me`) 
+  - match: Host(`cscms.me`)
     kind: Rule
     services:
     - name: oj-backend-srv
       kind: Service
       port: 8000
+  - match: Host(`www.cscms.me`)
+    kind: Rule
+    middlewares:
+      - name: redirect-www
+    

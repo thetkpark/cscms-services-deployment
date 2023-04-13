@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-www
+spec:
+  redirectRegex:
+    regex: ^https://www.cscms.me(.*)
+    replacement: https://cscms.me${1}
+    permanent: true
