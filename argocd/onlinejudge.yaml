@@ -13,6 +13,7 @@ spec:
     targetRevision: argocd
     directory:
       recurse: true
+      exclude: '*.enc.yaml'
   project: default
   syncPolicy:
     automated:
