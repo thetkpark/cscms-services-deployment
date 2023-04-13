@@ -19,7 +19,7 @@ spec:
             claimName: oj-pvc
       containers:
         - name: backend
-          image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
+          image: thetkpark/onlinejudge
           ports:
             - containerPort: 8000
             - containerPort: 1443

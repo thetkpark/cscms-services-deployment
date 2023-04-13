@@ -15,5 +15,9 @@ spec:
   - match: Host(`www.cscms.me`)
     kind: Rule
     middlewares:
-      - name: redirect-www
+    - name: redirect-www
+    services:
+    - name: oj-backend-srv
+      kind: Service
+      port: 8000
     
