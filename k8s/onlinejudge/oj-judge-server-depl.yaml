@@ -34,10 +34,10 @@ spec:
               subPath: judge_server/run
           resources:
             limits:
-              memory: "512Mi"
+              memory: "800Mi"
             requests:
-              memory: "180Mi"
-              cpu: "100m"
+              memory: "256Mi"
+              cpu: "150m"
           env:
             - name: SERVICE_URL
               valueFrom:
@@ -61,7 +61,7 @@ spec:
                 - /code/service.py
             initialDelaySeconds: 10
             periodSeconds: 5
-            timeoutSeconds: 3
+            timeoutSeconds: 5
           securityContext:
             capabilities:
               drop:
