@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`timetable.cscms.me`) 
+    kind: Rule
+    services:
+    - name: timetable-client-srv
+      kind: Service
+      port: 80
+  - match: Host(`timetable.cscms.me`) && PathPrefix(`/api`)
+    kind: Rule
+    services:
+    - name: timetable-api-srv
+      kind: Service
+      port: 4000
