@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cscms-intern-configmap
+data:
+  DB_HOST: mariadb-srv
+  DB_PORT: "3306"
+  DB_USERNAME: root
+  DB_DATABASE: cscms-internship

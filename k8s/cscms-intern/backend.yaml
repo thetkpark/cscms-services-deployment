@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cscms-intern-backend-depl
+spec:
+  selector:
+    matchLabels:
+      app: cscms-intern-backend-depl
+  template:
+    metadata:
+      labels:
+        app: cscms-intern-backend-depl
+    spec:
+      containers:
+      - name: cscms-intern-backend-depl
+        image: thetkpark/cscms-intern-backend
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+          requests:
+            memory: "16Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: cscms-intern-secret
+            optional: false
+        - configMapRef:
+            name: cscms-intern-configmap
+            optional: false
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cscms-intern-backend-srv
+spec:
+  selector:
+    app: cscms-intern-backend-depl
+  ports:
+  - port: 5000
+    targetPort: 5000

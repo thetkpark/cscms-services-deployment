@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cscms-intern
+  namespace: argocd
+spec:
+  destination:
+    namespace: cscms-intern
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s/cscms-intern
+    repoURL: https://github.com/thetkpark/cscms-services-deployment.git
+    targetRevision: argocd
+    directory:
+      recurse: true
+      exclude: '*.enc.yaml'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

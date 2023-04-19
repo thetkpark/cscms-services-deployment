@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb-depl
+  template:
+    metadata:
+      labels:
+        app: mariadb-depl
+    spec:
+      volumes:
+        - name: cscms-intern-vol
+          persistentVolumeClaim:
+            claimName: cscms-intern-pvc
+      containers:
+      - name: mariadb-depl
+        image: mariadb
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "50m"
+          requests:
+            memory: "64Mi"
+            cpu: "15m"
+        volumeMounts:
+          - name: cscms-intern-vol
+            mountPath: /var/lib/mysql
+        ports:
+        - containerPort: 3306
+        env: 
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cscms-intern-secret
+              key: DB_PASSWORD
+        - name: MARIADB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: cscms-intern-configmap
+              key: DB_DATABASE
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-srv
+spec:
+  selector:
+    app: mariadb-depl
+  ports:
+  - port: 3306
+    targetPort: 3306

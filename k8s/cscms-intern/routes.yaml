@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`intern.cscms.me`) && PathPrefix(`/api/`)
+    kind: Rule
+    services:
+    - name: cscms-intern-backend-srv
+      kind: Service
+      port: 5000
+  - match: Host(`intern.cscms.me`)
+    kind: Rule
+    services:
+    - name: cscms-intern-frontend-srv
+      kind: Service
+      port: 3000
