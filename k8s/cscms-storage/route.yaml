@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`storage.cscms.com`) 
+  - match: Host(`storage.cscms.me`) 
     kind: Rule
     services:
     - name: cscms-storage-srv
