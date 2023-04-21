@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cscms-storage-cleaner-cronjob
 spec:
-  schedule: "0 * * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       template:
