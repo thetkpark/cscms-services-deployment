@@ -4,7 +4,7 @@ metadata:
   name: rclone-sync
   namespace: cscms-storage
 spec:
-  schedule: "15 2 * * *"
+  schedule: "15 19 * * *"
   jobTemplate:
     spec:
       template:
