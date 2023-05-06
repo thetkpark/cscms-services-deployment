@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rclone-backup
+  namespace: argocd
+spec:
+  destination:
+    namespace: rclone-backup
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s/rclone-backup
+    repoURL: https://github.com/thetkpark/cscms-services-deployment.git
+    targetRevision: argocd
+    directory:
+      recurse: true
+      exclude: '*.enc.yaml'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

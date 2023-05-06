@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: blog-sethanantp-rclone-sync
+spec:
+  schedule: "0 4 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: rclone-config
+              secret:
+                secretName: rclone-config
+                optional: false
+            - name: blog-cms-volume
+              persistentVolumeClaim:
+                claimName: blog-ghost-pvc
+                readOnly: false
+          containers:
+            - name: rclone
+              image: rclone/rclone
+              imagePullPolicy: Always
+              args:
+                - sync
+                - /mnt/data
+                - cscms-k8s-backup-crypt:blog-sethanantp
+                - --config
+                - /config/rclone.conf
+              volumeMounts:
+                - name: rclone-config
+                  mountPath: /config
+                  readOnly: false
+                - mountPath: /mnt/data
+                  name: blog-cms-volume
+                  readOnly: true
+                
