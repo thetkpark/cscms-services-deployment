@@ -29,10 +29,10 @@ spec:
                 - cscms-k8s-backup-crypt:adguard
                 - --config
                 - /config/rclone.conf
-                - --stats-log-level
-                - INFO
                 - --log-level
                 - INFO
+                - --exclude
+                - work/
               volumeMounts:
                 - name: rclone-config
                   mountPath: /config
