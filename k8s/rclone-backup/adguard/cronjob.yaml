@@ -31,6 +31,8 @@ spec:
                 - /config/rclone.conf
                 - --stats-log-level
                 - INFO
+                - --log-level
+                - INFO
               volumeMounts:
                 - name: rclone-config
                   mountPath: /config
