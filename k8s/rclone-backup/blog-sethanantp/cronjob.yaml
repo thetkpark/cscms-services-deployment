@@ -4,7 +4,7 @@ metadata:
   name: rclone-sync
   namespace: blog-sethanantp
 spec:
-  schedule: "0 20 * * *"
+  schedule: "30 20 * * *"
   jobTemplate:
     spec:
       template:

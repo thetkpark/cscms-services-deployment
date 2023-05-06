@@ -2,9 +2,9 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: rclone-sync
-  namespace: cscms-storage
+  namespace: onlinejudge
 spec:
-  schedule: "30 19 * * *"
+  schedule: "0 21 * * *"
   jobTemplate:
     spec:
       template:
@@ -17,7 +17,7 @@ spec:
                 optional: false
             - name: target-vol
               persistentVolumeClaim:
-                claimName: cscms-storage-pvc
+                claimName: oj-pvc
                 readOnly: true
           containers:
             - name: rclone
@@ -26,7 +26,7 @@ spec:
               args:
                 - sync
                 - /mnt/data
-                - cscms-k8s-backup-crypt:cscms-storage
+                - cscms-k8s-backup-crypt:onlinejudge
                 - --config
                 - /config/rclone.conf
               volumeMounts:
