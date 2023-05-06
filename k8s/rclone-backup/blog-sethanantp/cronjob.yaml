@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: blog-sethanantp-rclone-sync
+  namespace: blog-sethanantp
 spec:
   schedule: "0 4 * * *"
   jobTemplate:
