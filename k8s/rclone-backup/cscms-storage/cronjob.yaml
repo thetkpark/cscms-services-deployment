@@ -2,9 +2,9 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: rclone-sync
-  namespace: blog-sethanantp
+  namespace: cscms-intern
 spec:
-  schedule: "0 4 * * *"
+  schedule: "0 2 * * *"
   jobTemplate:
     spec:
       template:
@@ -17,8 +17,8 @@ spec:
                 optional: false
             - name: target-vol
               persistentVolumeClaim:
-                claimName: blog-ghost-pvc
-                readOnly: false
+                claimName: cscms-intern-pvc
+                readOnly: true
           containers:
             - name: rclone
               image: rclone/rclone
@@ -26,7 +26,7 @@ spec:
               args:
                 - sync
                 - /mnt/data
-                - cscms-k8s-backup-crypt:blog-sethanantp
+                - cscms-k8s-backup-crypt:cscms-intern
                 - --config
                 - /config/rclone.conf
               volumeMounts:
