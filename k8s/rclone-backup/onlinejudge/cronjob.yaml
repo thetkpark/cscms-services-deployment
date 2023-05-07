@@ -31,6 +31,8 @@ spec:
                 - /config/rclone.conf
                 - --log-level
                 - INFO
+                - --exclude
+                - nginx_access.log
               volumeMounts:
                 - name: rclone-config
                   mountPath: /config
