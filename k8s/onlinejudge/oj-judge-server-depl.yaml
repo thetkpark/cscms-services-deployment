@@ -57,7 +57,7 @@ spec:
           livenessProbe:
             exec:
               command:
-                - python3
+                - /app/.venv/bin/python3
                 - /app/service.py
             initialDelaySeconds: 10
             periodSeconds: 5
