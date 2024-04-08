@@ -18,7 +18,7 @@ spec:
             claimName: oj-pvc
       containers:
         - name: judge
-          image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/judge_server
+          image: registry.cn-hongkong.aliyuncs.com/oj-image/judge:1.6.1
           ports:
             - containerPort: 8080
           volumeMounts:

@@ -19,7 +19,7 @@ spec:
             claimName: oj-pvc
       containers:
         - name: backend
-          image: thetkpark/onlinejudge
+          image: thetkpark/onlinejudge:0b2c6b3651aa922571b4a010d98edec721ac3d34
           ports:
             - containerPort: 8000
             - containerPort: 1443
