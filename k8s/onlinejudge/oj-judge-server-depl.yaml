@@ -18,7 +18,7 @@ spec:
             claimName: oj-pvc
       containers:
         - name: judge
-          image: registry.cn-hongkong.aliyuncs.com/oj-image/judge:1.6.0
+          image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/judge_server
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -57,8 +57,8 @@ spec:
           livenessProbe:
             exec:
               command:
-                - /app/.venv/bin/python3
-                - /app/service.py
+                - python3
+                - /code/service.py
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 5
