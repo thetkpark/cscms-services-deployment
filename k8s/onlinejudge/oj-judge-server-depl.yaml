@@ -58,7 +58,7 @@ spec:
             exec:
               command:
                 - python3
-                - /code/service.py
+                - /app/service.py
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 5
