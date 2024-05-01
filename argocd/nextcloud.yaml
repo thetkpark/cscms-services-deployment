@@ -34,10 +34,36 @@ spec:
   source:
     repoURL: "https://nextcloud.github.io/helm/"
     targetRevision: 4.6.7
-    chart: nextcloud/nextcloud
+    chart: nextcloud
     helm:
-      valueFiles:
-        - nextcloud-values.yaml
+      values: |
+        replicaCount: 1
+        ingress:
+          enabled: false
+        nextcloud:
+          host: nextcloud.cscms.me
+          existingSecret:
+            enabled: true
+            secretName: nextcloud-secret
+            usernameKey: username
+            passwordKey: password
+        internalDatabase:
+          enabled: true
+          name: nextcloud
+        service:
+          type: ClusterIP
+          port: 8080
+        persistence:
+          enabled: true
+          storageClass: local-path
+          accessMode: ReadWriteOnce
+          size: 128Gi
+        resources:
+          limits:
+            memory: 1.5Gi
+          requests:
+            cpu: 100m
+            memory: 512Mi
   sources: []
   project: default
   syncPolicy:
