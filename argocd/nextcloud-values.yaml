@@ -1,0 +1,162 @@
+# Number of replicas to be deployed
+replicaCount: 1
+
+ingress:
+  enabled: false
+
+phpClientHttpsFix:
+  enabled: false
+
+nextcloud:
+  host: nextcloud.cscms.me
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-secret
+    usernameKey: username
+    passwordKey: password
+
+internalDatabase:
+  enabled: true
+  name: nextcloud
+
+service:
+  type: ClusterIP
+  port: 8080
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: local-path
+
+  ## A manually managed Persistent Volume and Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  # existingClaim:
+  accessMode: ReadWriteOnce
+  size: 128Gi
+
+resources:
+  limits:
+    memory: 1.5Gi
+  requests:
+    cpu: 100m
+    memory: 512Mi
+
+## Liveness and readiness probe values
+## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+##
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+startupProbe:
+  enabled: false
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 30
+  successThreshold: 1
+
+## Enable pod autoscaling using HorizontalPodAutoscaler
+## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+##
+hpa:
+  enabled: false
+  cputhreshold: 60
+  minPods: 1
+  maxPods: 10
+
+## Prometheus Exporter / Metrics
+##
+metrics:
+  enabled: false
+
+  replicaCount: 1
+  # The metrics exporter needs to know how you serve Nextcloud either http or https
+  https: false
+  # Use API token if set, otherwise fall back to password authentication
+  # https://github.com/xperimental/nextcloud-exporter#token-authentication
+  # Currently you still need to set the token manually in your nextcloud install
+  token: ""
+  timeout: 5s
+  # if set to true, exporter skips certificate verification of Nextcloud server.
+  tlsSkipVerify: false
+
+  image:
+    repository: xperimental/nextcloud-exporter
+    tag: 0.6.2
+    pullPolicy: IfNotPresent
+    # pullSecrets:
+    #   - myRegistrKeySecretName
+
+  ## Metrics exporter resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  # resources: {}
+
+  ## Metrics exporter pod Annotation and Labels
+  # podAnnotations: {}
+
+  # podLabels: {}
+
+  service:
+    type: ClusterIP
+    ## Use serviceLoadBalancerIP to request a specific static IP,
+    ## otherwise leave blank
+    # loadBalancerIP:
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9205"
+    labels: {}
+
+  ## Prometheus Operator ServiceMonitor configuration
+  ##
+  serviceMonitor:
+    ## @param metrics.serviceMonitor.enabled Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    ##
+    enabled: false
+
+    ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
+    ##
+    namespace: ""
+
+    ## @param metrics.serviceMonitor.namespaceSelector The selector of the namespace where the target service is located (defaults to the release namespace)
+    namespaceSelector:
+
+    ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in prometheus.
+    ##
+    jobLabel: ""
+
+    ## @param metrics.serviceMonitor.interval Interval at which metrics should be scraped
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ##
+    interval: 30s
+
+    ## @param metrics.serviceMonitor.scrapeTimeout Specify the timeout after which the scrape is ended
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ##
+    scrapeTimeout: ""
+
+    ## @param metrics.serviceMonitor.labels Extra labels for the ServiceMonitor
+    ##
+    labels: {}
+
+rbac:
+  enabled: false
+  serviceaccount:
+    create: true
+    name: nextcloud-serviceaccount
+    annotations: {}
+
+## @param securityContext for nextcloud pod @deprecated Use `nextcloud.podSecurityContext` instead
+securityContext: {}
