@@ -7,7 +7,7 @@ stringData:
   users: admin:$2y$10$MNvkYSSwmiU.a3HdH3qW6.7nCTF.pONAqkSAuRuK5dv6rRCiuSAKu
 
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: admin-dashboard-basic-auth-middleware
