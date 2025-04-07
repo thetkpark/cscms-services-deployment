@@ -1,0 +1,27 @@
+USER-SUPPLIED VALUES: null
+bootstrapPassword: ENC[AES256_GCM,data:YoQK2WyvV9KOQgtqzgMSzzoi+g==,iv:fuhGG0iPFPROisB6VPJQA/U0UG7dsk8t5SmvxZ55NEM=,tag:AICok8BohUvfpSAOCU5iaQ==,type:str]
+hostname: ENC[AES256_GCM,data:Tj3Gn0aBrIAx4cyk9Jutlg==,iv:CKqZCzkaLdjuIe671xhVxNCNO1x8yxhq68gwwvhDYv0=,tag:dhnjrjsnVPolaG2UFwsnVQ==,type:str]
+ingress:
+    tls:
+        source: ENC[AES256_GCM,data:E9K4HRKF,iv:zGLElXEaIsmDzhXIDihq4jn461bQp/FdhZIQqQAIs8Q=,tag:OrA3qyfS467CGguXyFt2rQ==,type:str]
+replicas: ENC[AES256_GCM,data:Mw==,iv:CmRjIRbt3Re6RE9Q5Ww93TTEvhu5goxWZ7oyUaLDbGQ=,tag:NGFQORsk2JAP1mux5TorFQ==,type:int]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1d40qhm7zaxs2xkwzqetdhgju7k8f5ft98uav2we4unqmg684eansa2zcrv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYK3BFeThGMHhUTnNRYkp3
+            ZUU1USttTDZDam5ZN1NJdU9nTEE5NW5kWEMwCmVyc3VnaW1PcVFvTnE5MU90Sldl
+            L0k5YWxJakZFb2JRRFpXblI0eXU0K1UKLS0tIGFBdjFpNXJKczhXeStrVjFGQ240
+            dllIei9YMHRveHo1TUtZQk53QkNTT00Kd9OV1ok1pOtNBF8GUnWwNu+bzOc3gTft
+            4EGdVqG03h3ylchepCatQuMMtIRXW9DhVIlaqA923hVXxG48HLwJdQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-04-07T03:15:42Z"
+    mac: ENC[AES256_GCM,data:48sOYGySWAhfjVUNqbIKTI3lgDISGj81YJiN5F9VNXs4cie9t8cjr2sk/ynSK2ChaFdX7MKUdkGlbbt7XtdA207M8Y9SgFh/EkGsfOw5yqv2gbSAWY8J3oV+ctmTrwl9T1vL8EckbDQS9kNlgWyB1iJsCqhf1W72nD0zI+2HnVE=,iv:H95Ms6L0UNrTNvKh3QS8dvUGu7Vjov7jRV4F8kFeYlM=,tag:yo8TSf3O+/to32U345qLBQ==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1

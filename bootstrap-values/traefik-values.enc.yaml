@@ -1,0 +1,25 @@
+providers:
+    kubernetesCRD:
+        allowCrossNamespace: ENC[AES256_GCM,data:BXJBQQ==,iv:9BSEJqtL360xFz1qBud6ZSKPZC4tu1k/YnVlACB1gAc=,tag:XF/ze5ORUFP9gbA4cNhOOQ==,type:bool]
+        #ENC[AES256_GCM,data:grw9Tatq,iv:gHPT/Y1VlhXSpafkvA7/DYRwGcza+AePcWhbIHI3RHc=,tag:bw2fEwBRtN/5+Kz9ano/qg==,type:comment]
+        #ENC[AES256_GCM,data:sUbuQPjrfUUEng4QxYJ8yUHtbR3C8fvX,iv:eyjIGuLGpCC251mZOU5YQiFnvfpkYul0Aq6SGPpUOuw=,tag:noWew9N8ASJs3RHCjxch5A==,type:comment]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1d40qhm7zaxs2xkwzqetdhgju7k8f5ft98uav2we4unqmg684eansa2zcrv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQNlNKVjMxRm5QaGVwbUF6
+            RGNUcDEyYUFRY3hLa3RDL1l5dytvOWVWS1FzCjJGL1lPYnlNbk1iU0dOanhsSFVw
+            SkxndmkxTjR1aHNROGdBVDNWZjM2bjAKLS0tICtTK1lCaTJmTWRTcGFLVjBYVTZL
+            UGlZSVVVNmJHRFZ6OFlua1praU93REkK0AOPk5z+ZWptu0uTyNwV9Ond2COOA3jy
+            iIksA5Ze+JBbP2Ii4/M50YS5Rj7AihmUX1Sgio/MZQRY3AGv2LccfA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-04-07T03:15:42Z"
+    mac: ENC[AES256_GCM,data:RVuDUNHHyKZEPyLHhjPS698rQp5rYrfGSk6+okBA5F3whiMd6QbIT/4Tdz4CsoxnD1G9nwX7HGRLVSLHfGAOlLvRfOyRp7Pt8zzpaTtsNM/P3fwMPC6msO5gf/fBSjmxtwh0K7cCQM9v62JSRdevsZn4boGfETFI8/m035JWUbA=,iv:imbNI0Oy6U4aMoxmqVGL17GmcZja0L/CY3EQlY8l4I8=,tag:IJhQWG9vWQwJKHU31KR6Lw==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1
