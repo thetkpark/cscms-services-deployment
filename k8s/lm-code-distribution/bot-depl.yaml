@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: lm-code-distribution-depl
-          image: thetkpark/lm-code-distribution:amd64
+          image: thetkpark/lm-code-distribution@sha256:42928747a03954a23003541e5899b06af7a46a4a96637ec17e49139930b0ec7c
           resources:
             limits:
               memory: "1Gi"
