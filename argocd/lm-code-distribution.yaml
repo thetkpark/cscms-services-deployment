@@ -1,0 +1,24 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lm-code-distribution
+  namespace: argocd
+spec:
+  destination:
+    namespace: lm-code-distribution
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s/lm-code-distribution
+    repoURL: https://github.com/thetkpark/cscms-services-deployment.git
+    targetRevision: argocd
+    directory:
+      recurse: true
+      exclude: '*.enc.yaml'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

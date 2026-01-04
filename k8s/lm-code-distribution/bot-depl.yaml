@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lm-code-distribution-depl
+spec:
+  selector:
+    matchLabels:
+      app: lm-code-distribution-depl
+  template:
+    metadata:
+      labels:
+        app: lm-code-distribution-depl
+    spec:
+      containers:
+        - name: lm-code-distribution-depl
+          image: thetkpark/lm-code-distribution:amd64
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "50m"
+          envFrom:
+            - secretRef:
+                name: lm-code-distribution
+                optional: false
+          env:
+            - name: NODE_ENV
+              value: "production"
