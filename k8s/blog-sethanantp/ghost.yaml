@@ -17,45 +17,54 @@ spec:
             claimName: blog-ghost-pvc
             readOnly: false
       containers:
-      - name: blog-ghost
-        image: ghost:5
-        imagePullPolicy: Always
-        resources:
-          limits:
-            memory: "512Mi"
-          requests:
-            memory: "200Mi"
-            cpu: "20m"
-        ports:
-        - containerPort: 2368 
-        env:
-        - name: url
-          value: https://blog.sethanantp.com
-        - name: database__client
-          value: mysql
-        - name: database__connection__host
-          value: blog-mysql-srv
-        - name: database__connection__user
-          value: root
-        - name: database__connection__password
-          valueFrom:
-            secretKeyRef:
-              name: blog-ghost-secret
-              key: MYSQL_ROOT_PASSWORD
-        - name: database__connection__database
-          value: ghost
-        volumeMounts:
-        - mountPath: /var/lib/ghost/content
-          name: blog-cms-volume
-          subPath: ghost
-          readOnly: false
-        # readinessProbe:
-        #   httpGet:
-        #     port: 2368
-        #   initialDelaySeconds: 30
-        #   failureThreshold: 6
-          
-            
+        - name: blog-ghost
+          image: ghost:5
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "512Mi"
+            requests:
+              memory: "200Mi"
+              cpu: "20m"
+          ports:
+            - containerPort: 2368
+          env:
+            - name: url
+              value: https://blog.sethanantp.com
+            - name: database__client
+              value: mysql
+            - name: database__connection__host
+              value: blog-mysql-srv
+            - name: database__connection__user
+              value: root
+            - name: database__connection__database
+              value: ghost
+            - name: mail__transport
+              value: SMTP
+            - name: mail__options__service
+              value: Mailgun
+            - name: mail__options__host
+              value: smtp.mailgun.org
+            - name: mail__options__port
+              value: "465"
+            - name: mail__options__secure
+              value: "true"
+            - name: mail__options__auth__user
+              value: no-reply@blog.sethanantp.com
+          envFrom:
+            - secretRef:
+                name: blog-ghost-secret
+          volumeMounts:
+            - mountPath: /var/lib/ghost/content
+              name: blog-cms-volume
+              subPath: ghost
+              readOnly: false
+          # readinessProbe:
+          #   httpGet:
+          #     port: 2368
+          #   initialDelaySeconds: 30
+          #   failureThreshold: 6
+
 ---
 apiVersion: v1
 kind: Service
@@ -65,5 +74,5 @@ spec:
   selector:
     app: blog-ghost
   ports:
-  - port: 2368
-    targetPort: 2368
+    - port: 2368
+      targetPort: 2368
