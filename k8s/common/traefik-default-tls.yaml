@@ -5,4 +5,4 @@ metadata:
 
 spec:
   defaultCertificate:
-    secretName: cscms-tls
+    secretName: cscms-tls-2026
