@@ -6,9 +6,7 @@ spec:
   entryPoints:
     - websecure
   tls:
-    store:
-      name: default
-      namespace: default
+    secretName: cscms-tls
   routes:
   - match: Host(`cscms.me`)
     kind: Rule
