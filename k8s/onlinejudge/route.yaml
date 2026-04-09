@@ -5,8 +5,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: cscms-tls
   routes:
   - match: Host(`cscms.me`)
     kind: Rule
