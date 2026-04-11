@@ -38,7 +38,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: blog-ghost-secret
-              key: MYSQL_ROOT_PASSWORD
+              key: database__connection__password
 ---
 
 apiVersion: v1
