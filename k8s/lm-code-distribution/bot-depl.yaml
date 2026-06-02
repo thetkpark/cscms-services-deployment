@@ -30,3 +30,15 @@ spec:
               value: "production"
             - name: ALLOWED_USER_IDS
               value: "834716830"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
