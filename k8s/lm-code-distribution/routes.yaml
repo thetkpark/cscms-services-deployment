@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`lm-code-email-webhook.sethanantp.com`) 
+    kind: Rule
+    services:
+    - name: lm-code-email-webhook-srv
+      kind: Service
+      port: 3000
+  tls:
+    secretName: lm-code-email-webhook-tls
+    domains:
+    - main: lm-code-email-webhook.sethanantp.com
+    
