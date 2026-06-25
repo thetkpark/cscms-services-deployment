@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: lm-code-distribution-depl
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: lm-code-distribution-depl
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: lm-code-distribution-depl
-          image: thetkpark/lm-code-distribution:f84a693d702fc54bc2f6857126b453ffcf48a67f
+          image: thetkpark/lm-code-distribution:c72a20ac8bd9155729a3e47a59cffea4643a1c7b
           resources:
             limits:
               memory: "1Gi"
