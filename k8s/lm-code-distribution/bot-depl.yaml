@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: lm-code-distribution-depl
-          image: thetkpark/lm-code-distribution:c72a20ac8bd9155729a3e47a59cffea4643a1c7b
+          image: thetkpark/lm-code-distribution:a6c47eefc9f1b22b23cb98af0d2c6b0e1071a4cd
           resources:
             limits:
               memory: "1Gi"
@@ -29,7 +29,7 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            - name: ALLOWED_USER_IDS
+            - name: ADMIN_USER_IDS
               value: "834716830"
           livenessProbe:
             httpGet:
