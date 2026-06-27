@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: lm-code-distribution-depl
-          image: thetkpark/lm-code-distribution:a6c47eefc9f1b22b23cb98af0d2c6b0e1071a4cd
+          image: thetkpark/lm-code-distribution:bc96e9dcb17ea738b1eaf85cd4bdab80a3ce289f
           resources:
             limits:
               memory: "1Gi"
